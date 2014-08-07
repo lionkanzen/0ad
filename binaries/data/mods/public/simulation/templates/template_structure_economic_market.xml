@@ -47,15 +47,6 @@
     <Radius>40</Radius>
     <Weight>30000</Weight>
   </TerritoryInfluence>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Technologies datatype="tokens">
-      speed_trader_01
-    </Technologies>
-    <Entities datatype="tokens">
-      units/{civ}_support_trader
-    </Entities>
-  </ProductionQueue>
   <Vision>
     <Range>32</Range>
   </Vision>

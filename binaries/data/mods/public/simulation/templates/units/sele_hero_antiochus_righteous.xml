@@ -13,14 +13,8 @@
       <AuraDescription>All nearby enemy buildings, siege engines, and ships have their health halved.</AuraDescription>
     </Aura1>
   </Auras>
-  <Builder>
-    <Rate>1.0</Rate>
-    <Entities datatype="tokens">
-      structures/{civ}_civil_centre
-    </Entities>
-  </Builder>
   <Identity>
-    <Civ>sele</Civ>
+    <Civ>barb</Civ>
     <GenericName>Antiochus IV "The Righteous"</GenericName>
     <SpecificName>Antiokhos D' Epiphanes</SpecificName>
     <History>Antiochus IV Epiphanes was a son of Antiochus III the Great and brother of Seleucus IV Philopator. Originally named Mithridates, he assumed the name Antiochus either upon his accession to the throne or after the death of his elder brother Antiochus. Notable events during his reign include the near-conquest of Egypt (twice), which was halted by the threat of Roman intervention, and the beginning of the Jewish revolt of the Maccabees. He died of sudden illness while fighting off a Parthian invasion from the East.</History>

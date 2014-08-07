@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wallset">
   <Identity>
-    <Civ>iber</Civ>
+    <Civ>player</Civ>
     <SpecificName>Zabal Horma</SpecificName>
     <History>High and strongly built defensive stone walls were a common structure of the Iberian Peninsula during the period, and for long thereafter.</History>
   </Identity>

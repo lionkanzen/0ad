@@ -7,7 +7,7 @@
     </Resources>
   </Cost>
   <Identity>
-    <Civ>cart</Civ>
+    <Civ>barb</Civ>
 	<GenericName>Sacred Band Cavalry</GenericName>
     <SpecificName>Sacred Band of Astarte</SpecificName>
     <Tooltip>Bonused vs. Ranged Units.</Tooltip>

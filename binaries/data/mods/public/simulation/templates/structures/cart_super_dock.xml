@@ -6,7 +6,7 @@
     <Category>Dock</Category>
   </BuildRestrictions>
   <Identity>
-    <Civ>cart</Civ>
+    <Civ>player</Civ>
     <GenericName>Naval Shipyard</GenericName>
     <SpecificName>Cothon</SpecificName>
     <Classes datatype="tokens">-City Town Shipyard</Classes>
@@ -49,18 +49,6 @@
   </Sound>
   <TerritoryDecay disable=""/>
   <TerritoryInfluence disable=""/>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/cart_ship_bireme
-      units/cart_ship_trireme
-      units/cart_ship_quinquereme
-    </Entities>
-    <Technologies datatype="tokens">
-	  carthaginians/training_phoenician_naval_architects
-	  carthaginians/special_exploration
-    </Technologies>
-  </ProductionQueue>
   <Vision>
     <Range>100</Range>
   </Vision>

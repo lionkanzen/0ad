@@ -8,7 +8,7 @@
     <SpawnEntityOnDeath>rubble/rubble_3x3</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>rome</Civ>
+    <Civ>player</Civ>
     <GenericName>Temple of Vesta</GenericName>
     <SpecificName>Aedes Vestae</SpecificName>
     <History>(Insert History)</History>

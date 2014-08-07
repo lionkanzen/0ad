@@ -8,17 +8,10 @@
     <SpawnEntityOnDeath>rubble/rubble_hele_cc</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>hele</Civ>
+    <Civ>player</Civ>
     <SpecificName>Agorā́</SpecificName>
     <History>The most important place in most Classical Greek poleis, the Agora served many purposes; it was a place for public speeches and was the stage for civic life and commercial interests.</History>
   </Identity>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/hele_infantry_spearman_b
-      units/hele_infantry_javelinist_b
-      units/hele_cavalry_javelinist_b
-    </Entities>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/hellenes/civic_centre_new.xml</Actor>
   </VisualActor>

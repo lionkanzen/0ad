@@ -6,7 +6,7 @@
     </Resources>
   </Cost>
   <Identity>
-    <Civ>gaul</Civ>
+    <Civ>barb</Civ>
     <GenericName>Heavy Swordsman</GenericName>
     <SpecificName>Solduros</SpecificName>
 	<SelectionGroupName>units/gaul_champion_infantry</SelectionGroupName>

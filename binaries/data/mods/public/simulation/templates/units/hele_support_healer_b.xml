@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support_healer">
   <Identity>
-    <Civ>hele</Civ>
+    <Civ>barb</Civ>
     <SelectionGroupName>units/hele_support_healer_b</SelectionGroupName>
     <SpecificName>Hiereús</SpecificName>
     <History>The art of medicine was widely practised in Classical Greece. Hippocrates was the first physician to separate religion and superstition from actual medicine, and many others followed his lead.</History>

@@ -28,7 +28,7 @@
     <SpawnEntityOnDeath>rubble/rubble_2x2</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>brit</Civ>
+    <Civ>player</Civ>
     <GenericName>Special Building</GenericName>
     <SpecificName>Kennel</SpecificName>
     <Classes datatype="tokens">Kennel</Classes>
@@ -53,12 +53,6 @@
     <Radius>20</Radius>
     <Weight>30000</Weight>
   </TerritoryInfluence>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/brit_war_dog_b
-    </Entities>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/celts/kennel.xml</Actor>
     <FoundationActor>structures/fndn_2x2.xml</FoundationActor>

@@ -19,7 +19,7 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>celt</Civ>
+    <Civ>player</Civ>
     <GenericName>Rotary Mill</GenericName>
     <SpecificName>Melonas</SpecificName>
     <Tooltip>Increase nearby farming output +25%. (Currently, a special technology can be researched to serve this function)</Tooltip>
@@ -29,12 +29,6 @@
   <Obstruction>
     <Static width="16.0" depth="16.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
-    <Technologies datatype="tokens">
-      celts/special_gather_crop_rotation
-    </Technologies>
-  </ProductionQueue>
   <RallyPoint disable=""/>
   <Sound>
     <SoundGroups>

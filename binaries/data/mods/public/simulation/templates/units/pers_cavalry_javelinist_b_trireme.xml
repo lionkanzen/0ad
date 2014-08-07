@@ -4,7 +4,7 @@
     <BuildTime>15</BuildTime>
   </Cost>
   <Identity>
-    <Civ>pers</Civ>
+    <Civ>barb</Civ>
 	<SelectionGroupName>units/pers_cavalry_javelinist_b</SelectionGroupName>
 	<GenericName>Median Light Cavalry</GenericName>
     <SpecificName>Mada Asabara</SpecificName>

@@ -8,7 +8,7 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_3x3</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>player</Civ>
     <SpecificName>Kantu</SpecificName>
     <History>Farmstead.</History>
   </Identity>

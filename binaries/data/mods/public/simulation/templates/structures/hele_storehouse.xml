@@ -7,7 +7,7 @@
     <Max>880</Max>
   </Health>
   <Identity>
-    <Civ>hele</Civ>
+    <Civ>player</Civ>
     <SpecificName>Apothḗkē</SpecificName>
     <History>Resources and building materials were kept in warehouses.</History>
   </Identity>

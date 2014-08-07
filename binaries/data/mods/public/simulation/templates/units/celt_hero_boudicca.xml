@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="units/brit_hero_boudicca">
   <Identity>
-    <Civ>celt</Civ>
+    <Civ>barb</Civ>
   </Identity>
 </Entity>

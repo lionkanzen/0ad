@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_ranged_javelinist">
   <Identity>
-    <Civ>hele</Civ>
+    <Civ>barb</Civ>
 	<SelectionGroupName>units/hele_cavalry_javelinist_b</SelectionGroupName>
 	<GenericName>Thessalian Scout</GenericName>
     <SpecificName>Pródromos</SpecificName>

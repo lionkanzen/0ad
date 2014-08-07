@@ -16,7 +16,7 @@
     <Max>2000</Max>
   </Health>
   <Identity>
-    <Civ>athen</Civ>
+    <Civ>player</Civ>
     <GenericName>Gymnasium</GenericName>
     <SpecificName>Gymnásieon</SpecificName>
     <Tooltip>Train champion units.</Tooltip>
@@ -33,16 +33,6 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/athen_champion_infantry
-      units/athen_champion_ranged
-    </Entities>
-    <Technologies datatype="tokens">
-      pair_champ_02
-    </Technologies>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/athenians/gymnasion.xml</Actor>
     <FoundationActor>structures/fndn_6x6.xml</FoundationActor>

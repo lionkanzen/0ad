@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_elephant_melee">
   <Identity>
-    <Civ>pers</Civ>
+    <Civ>barb</Civ>
     <GenericName>Indian War Elephant</GenericName>
     <SpecificName>Hinduya Pila</SpecificName>
     <Icon>units/pers_war_elephant.png</Icon>

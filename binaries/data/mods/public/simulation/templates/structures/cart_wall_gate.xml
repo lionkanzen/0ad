@@ -5,15 +5,15 @@
     <Height>9.0</Height>
   </Footprint>
   <Identity>
-    <Civ>cart</Civ>
+    <Civ>player</Civ>
     <SpecificName>Mijdil-šaʿar</SpecificName>
     <History>The tower sections constituted a 4th level where they rose up to provide even higher firing level platform than that of the top of the wall run.</History>
   </Identity>
   <Obstruction>
     <Obstructions>
-      <Right width="13" depth="10" x="15" z="0"/>
-      <Left width="13" depth="10" x="-15" z="0"/>
-      <Door width="20" depth="10" x="0" z="0"/>
+      <Right width="13" x="15" z="0" depth="10"/>
+      <Left width="13" x="-15" z="0" depth="10"/>
+      <Door width="20" x="0" z="0" depth="10"/>
     </Obstructions>
   </Obstruction>
   <VisualActor>

@@ -5,15 +5,15 @@
     <Height>9.0</Height>
   </Footprint>
   <Identity>
-    <Civ>pers</Civ>
+    <Civ>player</Civ>
     <SpecificName>Duvitaparnam</SpecificName>
     <History>Persepolis, the Persian royal capital, was constructed on an immense man-made terrace with strong defensive walls.</History>
   </Identity>
   <Obstruction>
     <Obstructions>
-      <Right width="11" depth="7" x="13" z="0"/>
-      <Left width="11" depth="7" x="-13" z="0"/>
-      <Door width="15" depth="7" x="0" z="0"/>
+      <Right width="11" x="13" z="0" depth="7"/>
+      <Left width="11" x="-13" z="0" depth="7"/>
+      <Door width="15" x="0" z="0" depth="7"/>
     </Obstructions>
   </Obstruction>
   <VisualActor>

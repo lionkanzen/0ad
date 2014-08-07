@@ -8,7 +8,7 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_5x5</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>player</Civ>
     <SpecificName>Vipana</SpecificName>
     <History>Market.</History>
   </Identity>

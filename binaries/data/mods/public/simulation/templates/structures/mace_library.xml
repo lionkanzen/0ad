@@ -11,7 +11,7 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_4x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>mace</Civ>
+    <Civ>player</Civ>
     <GenericName>Library</GenericName>
     <SpecificName>Bibliothikon</SpecificName>
     <Tooltip>Research special technologies and reduce the research time of all remaining technologies.</Tooltip>
@@ -21,12 +21,6 @@
   <Obstruction>
     <Static width="25.0" depth="30.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Technologies datatype="tokens">
-      successors/special_hellenistic_metropolis
-    </Technologies>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_temple.xml</select>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_ranged_javelinist">
   <Identity>
-    <Civ>athen</Civ>
+    <Civ>barb</Civ>
 	<SelectionGroupName>units/athen_cavalry_javelinist_b</SelectionGroupName>
     <SpecificName>Pródromos</SpecificName>
     <History>Prodromoi were the light scouts of Greek armies.</History>

@@ -14,23 +14,12 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_5x5</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>sele</Civ>
+    <Civ>player</Civ>
     <SpecificName>Stratones</SpecificName>
   </Identity>
   <Obstruction>
     <Static width="20.0" depth="20.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/sele_infantry_spearman_b
-      units/sele_infantry_javelinist_b
-      units/sele_cavalry_javelinist_b
-      units/sele_cavalry_archer_b
-    </Entities>
-    <Technologies datatype="tokens">
-	  -unlock_champion_units
-    </Technologies>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/macedonians/barracks.xml</Actor>
     <FoundationActor>structures/fndn_5x5.xml</FoundationActor>

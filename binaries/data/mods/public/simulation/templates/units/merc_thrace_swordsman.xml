@@ -17,7 +17,7 @@
     <Max>120</Max>
   </Health>
   <Identity>
-    <Civ>merc</Civ>
+    <Civ>barb</Civ>
 	<GenericName>Thracian Mercenary Swordsman</GenericName>
     <SpecificName>Rhomphaiaphoros Thrakikós</SpecificName>
     <Rank>Elite</Rank>

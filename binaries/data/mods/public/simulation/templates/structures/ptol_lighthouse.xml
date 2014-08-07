@@ -13,7 +13,7 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_4x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>ptol</Civ>
+    <Civ>player</Civ>
     <GenericName>Lighthouse</GenericName>
     <SpecificName>Pharos</SpecificName>
     <Classes datatype="tokens">Lighthouse Town -City</Classes>

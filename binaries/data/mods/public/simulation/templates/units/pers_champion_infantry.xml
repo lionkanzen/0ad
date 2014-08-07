@@ -7,7 +7,7 @@
     </Resources>
   </Cost>
   <Identity>
-    <Civ>pers</Civ>
+    <Civ>barb</Civ>
     <GenericName>Persian Immortal</GenericName>
     <SpecificName>Anusiya</SpecificName>
     <Classes datatype="tokens">Immortal</Classes>

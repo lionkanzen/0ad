@@ -5,10 +5,6 @@
     <Pierce>8</Pierce>
     <Crush>10</Crush>
   </Armour>
-  <Builder>
-    <Rate>2.0</Rate>
-    <Entities datatype="tokens"/>
-  </Builder>
   <Cost>
     <BuildTime>20</BuildTime>
     <Resources>
@@ -23,7 +19,7 @@
     <Max>300</Max>
   </Health>
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>barb</Civ>
     <Classes datatype="tokens">Elephant</Classes>
     <GenericName>Worker Elephant</GenericName>
     <SpecificName>Karmākara Gaja</SpecificName>

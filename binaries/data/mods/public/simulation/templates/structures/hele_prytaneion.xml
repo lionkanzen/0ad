@@ -17,7 +17,7 @@
     <Max>2200</Max>
   </Health>
   <Identity>
-    <Civ>hele</Civ>
+    <Civ>player</Civ>
     <GenericName>Council Chamber</GenericName>
     <SpecificName>Prytaneîon</SpecificName>
     <Tooltip>Train heroes.</Tooltip>
@@ -34,17 +34,6 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/hele_hero_alexander
-      units/hele_hero_demetrius
-      units/hele_hero_leonidas
-      units/hele_hero_philip
-      units/hele_hero_themistocles
-      units/hele_hero_xenophon
-    </Entities>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/hellenes/tholos.xml</Actor>
   </VisualActor>

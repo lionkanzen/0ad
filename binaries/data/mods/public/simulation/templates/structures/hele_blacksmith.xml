@@ -7,7 +7,7 @@
     <Max>2200</Max>
   </Health>
   <Identity>
-    <Civ>hele</Civ>
+    <Civ>player</Civ>
     <SpecificName>Sidirourgeíon</SpecificName>
     <History>The earliest Greek smiths worked in copper, then bronze, and then finally iron.</History>
   </Identity>

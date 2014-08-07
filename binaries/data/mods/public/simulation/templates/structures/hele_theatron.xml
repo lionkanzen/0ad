@@ -28,7 +28,7 @@
     <Max>5500</Max>
   </Health>
   <Identity>
-    <Civ>hele</Civ>
+    <Civ>player</Civ>
 	<GenericName>Greek Theater</GenericName>
     <SpecificName>Théātron</SpecificName>
     <Classes datatype="tokens">Theater</Classes>
@@ -39,12 +39,6 @@
   <Obstruction>
     <Static width="52.0" depth="52.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
-    <Technologies datatype="tokens">
-      hellenes/temp_special_hellenization
-    </Technologies>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_greek_theater.xml</select>

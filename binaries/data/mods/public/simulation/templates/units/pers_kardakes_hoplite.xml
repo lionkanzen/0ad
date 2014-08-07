@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_spearman">
   <Identity>
-    <Civ>pers</Civ>
+    <Civ>barb</Civ>
     <GenericName>Cardaces Hoplite</GenericName>
     <SpecificName>Hoplites Kardakes</SpecificName>
     <Icon>units/pers_kardakes.png</Icon>

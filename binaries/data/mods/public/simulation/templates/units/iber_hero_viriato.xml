@@ -6,7 +6,7 @@
     </Resources>
   </Cost>
   <Identity>
-    <Civ>iber</Civ>
+    <Civ>barb</Civ>
     <SpecificName>Viriato</SpecificName>
     <Icon>units/iber_hero_viriato.png</Icon>
 	<Tooltip>Hero Aura: "Tactica Guerilla." TBD.</Tooltip>

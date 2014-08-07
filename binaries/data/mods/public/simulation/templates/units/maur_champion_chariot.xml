@@ -25,7 +25,7 @@
     <Max>190</Max>
   </Health>
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>barb</Civ>
     <Classes datatype="tokens">Champion Chariot</Classes>
 	<GenericName>War Chariot</GenericName>
     <SpecificName>Rath</SpecificName>

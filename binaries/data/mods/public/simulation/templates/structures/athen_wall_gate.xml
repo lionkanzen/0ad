@@ -5,15 +5,15 @@
     <Height>9.0</Height>
   </Footprint>
   <Identity>
-    <Civ>athen</Civ>
+    <Civ>player</Civ>
     <SpecificName>Pýlai</SpecificName>
     <History>The Athenian city wall was pierced by numerous gates and posterns of various sizes and importance. The "Sacred Gate" was the gate on the road to Eleusis. Another gate was the Dipylon Gate, whose name literally means "Double Gate."</History>
   </Identity>
   <Obstruction>
     <Obstructions>
-      <Right width="12" depth="6.5" x="12.5" z="0"/>
-      <Left width="12" depth="6.5" x="-12.5" z="0"/>
-      <Door width="13" depth="6.5" x="0" z="0"/>
+      <Right width="12" x="12.5" z="0" depth="6.5"/>
+      <Left width="12" x="-12.5" z="0" depth="6.5"/>
+      <Door width="13" x="0" z="0" depth="6.5"/>
     </Obstructions>
   </Obstruction>
   <VisualActor>

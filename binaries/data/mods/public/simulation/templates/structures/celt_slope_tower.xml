@@ -5,7 +5,7 @@
     <Height>20.0</Height>
   </Footprint>
   <Identity>
-    <Civ>celt</Civ>
+    <Civ>player</Civ>
     <SpecificName>Earthworks</SpecificName>
     <History>Julius Caesar encountered many hillforts during his campaigns in Gaul</History>
   </Identity>

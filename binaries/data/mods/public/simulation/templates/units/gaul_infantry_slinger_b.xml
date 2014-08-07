@@ -3,14 +3,8 @@
   <Armour>
     <Hack>2.0</Hack>
   </Armour>
-  <Builder>
-    <Entities datatype="tokens">
-      structures/gaul_tavern
-      structures/gaul_rotarymill
-    </Entities>
-  </Builder>
   <Identity>
-    <Civ>gaul</Civ>
+    <Civ>barb</Civ>
     <SelectionGroupName>units/gaul_infantry_slinger_b</SelectionGroupName>
     <GenericName>Celtic Slinger</GenericName>
     <SpecificName>Iaosae</SpecificName>

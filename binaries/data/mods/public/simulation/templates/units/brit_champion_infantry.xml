@@ -13,7 +13,7 @@
     </Charge>
   </Attack>
   <Identity>
-    <Civ>brit</Civ>
+    <Civ>barb</Civ>
     <GenericName>Brythonic Longswordsman</GenericName>
     <SpecificName>Delamokludda</SpecificName>
 	<SelectionGroupName>units/brit_champion_infantry</SelectionGroupName>

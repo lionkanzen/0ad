@@ -5,7 +5,7 @@
     <Height>9.0</Height>
   </Footprint>
   <Identity>
-    <Civ>ptol</Civ>
+    <Civ>player</Civ>
 	<SelectionGroupName>structures/mace_wallset_stone</SelectionGroupName>
     <SpecificName>h-n-njwt</SpecificName>
     <History>?</History>

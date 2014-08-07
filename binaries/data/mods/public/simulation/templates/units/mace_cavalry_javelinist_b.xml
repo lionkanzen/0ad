@@ -8,7 +8,7 @@
     </Resources>
   </Cost>
   <Identity>
-    <Civ>mace</Civ>
+    <Civ>barb</Civ>
 	<SelectionGroupName>units/mace_cavalry_javelinist_b</SelectionGroupName>
 	<GenericName>Odrysian Skirmish Cavalry</GenericName>
     <SpecificName>Hippakontistès Odrysón</SpecificName>

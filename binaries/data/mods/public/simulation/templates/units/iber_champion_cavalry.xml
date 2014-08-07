@@ -28,7 +28,7 @@
     </Resources>
   </Cost>
   <Identity>
-    <Civ>iber</Civ>
+    <Civ>barb</Civ>
     <SpecificName>Leial Zalduneria</SpecificName>
     <Icon>units/iber_champion_cavalry.png</Icon>
 	<SelectionGroupName>units/iber_champion_cavalry</SelectionGroupName>

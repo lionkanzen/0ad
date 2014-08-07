@@ -17,7 +17,7 @@
     <Max>3000</Max>
   </Health>
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>player</Civ>
     <GenericName>Elephant Stables</GenericName>
     <SpecificName>Vāraṇaśālā</SpecificName>
     <History>Elephant Stables.</History>
@@ -32,14 +32,6 @@
   <Obstruction>
     <Static width="30.0" depth="29.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/maur_support_elephant
-      units/maur_elephant_archer_b
-      units/maur_champion_elephant
-    </Entities>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_elephant_stables.xml</select>

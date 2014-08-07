@@ -5,7 +5,7 @@
     <Height>3.0</Height>
   </Footprint>
   <Identity>
-    <Civ>mace</Civ>
+    <Civ>barb</Civ>
     <SpecificName>Poliorkitikós Kriós</SpecificName>
     <History>Macedonian siege ram</History>
     <Icon>units/mace_mechanical_siege_ram.png</Icon>

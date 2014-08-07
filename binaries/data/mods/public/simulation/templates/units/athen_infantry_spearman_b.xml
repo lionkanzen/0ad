@@ -8,16 +8,8 @@
       <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
-  <Builder>
-    <Entities datatype="tokens">
-      structures/athen_gymnasion
-      structures/athen_theatron
-      structures/athen_prytaneion
-      structures/{civ}_wonder
-    </Entities>
-  </Builder>
   <Identity>
-    <Civ>athen</Civ>
+    <Civ>barb</Civ>
 	<SelectionGroupName>units/athen_infantry_spearman_b</SelectionGroupName>
     <GenericName>Athenian Hoplite</GenericName>
 	<SpecificName>Hoplī́tēs Athēnaïkós</SpecificName>

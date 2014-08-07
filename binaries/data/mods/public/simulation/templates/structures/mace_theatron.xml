@@ -28,7 +28,7 @@
     <Max>2000</Max>
   </Health>
   <Identity>
-    <Civ>mace</Civ>
+    <Civ>player</Civ>
 	<GenericName>Greek Theater</GenericName>
     <SpecificName>Théātron</SpecificName>
     <Classes datatype="tokens">Theater</Classes>

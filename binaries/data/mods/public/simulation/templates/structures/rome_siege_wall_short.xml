@@ -27,7 +27,7 @@
     <Max>1000</Max>
   </Health>
   <Identity>
-    <Civ>rome</Civ>
+    <Civ>player</Civ>
 	<SelectionGroupName>structures/rome_wallset_siege</SelectionGroupName>
 	<GenericName>Siege Wall</GenericName>
     <SpecificName>Murus Circummunitionis</SpecificName>

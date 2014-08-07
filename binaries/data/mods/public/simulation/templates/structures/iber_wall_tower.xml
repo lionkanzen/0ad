@@ -5,18 +5,13 @@
     <Height>15.0</Height>
   </Footprint>
   <Identity>
-    <Civ>iber</Civ>
+    <Civ>player</Civ>
     <SpecificName>Dorre</SpecificName>
     <History>Sturdy battlements for city walls.</History>
   </Identity>
   <Obstruction>
     <Static width="10" depth="10"/>
   </Obstruction>
-  <ProductionQueue>
-    <Technologies datatype="tokens">
-      -pair_walls_01
-    </Technologies>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/iberians/wall_tower.xml</Actor>
   </VisualActor>

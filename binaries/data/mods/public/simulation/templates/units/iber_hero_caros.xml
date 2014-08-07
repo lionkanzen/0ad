@@ -6,7 +6,7 @@
     </Melee>
   </Attack>
   <Identity>
-    <Civ>iber</Civ>
+    <Civ>barb</Civ>
     <SpecificName>Caros</SpecificName>
     <Icon>units/iber_hero_caros.png</Icon>
 	<Tooltip>Hero Aura: "Tactica Guerilla." TBD.</Tooltip>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_dog">
   <Identity>
-    <Civ>celt</Civ>
+    <Civ>barb</Civ>
 	<SelectionGroupName>units/celt_war_dog_b</SelectionGroupName>
     <SpecificName>Coun</SpecificName>
     <History>The Celts used large dogs such as mastiffs or wolfhounds in combat, especially against enemy cavalry. The Romans were very impressed with the strength and ferocity of these dogs. Many were brought back to Rome for the gladiator arena or to serve as guard dogs.</History>

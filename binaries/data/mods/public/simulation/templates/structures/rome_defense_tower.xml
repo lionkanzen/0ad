@@ -5,7 +5,7 @@
     <Height>15.0</Height>
   </Footprint>
   <Identity>
-    <Civ>rome</Civ>
+    <Civ>player</Civ>
     <SpecificName>Turris Lignea</SpecificName>
     <History>For use by the Romans to keep an eye over surrounding hostile territory.</History>
   </Identity>

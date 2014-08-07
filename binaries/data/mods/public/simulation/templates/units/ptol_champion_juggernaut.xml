@@ -15,7 +15,7 @@
     <Max>4000</Max>
   </Health>
   <Identity>
-    <Civ>ptol</Civ>
+    <Civ>barb</Civ>
 	<GenericName>Juggernaut</GenericName>
     <SpecificName>Tessarakonterēs</SpecificName>
     <Classes datatype="tokens">Juggernaut</Classes>

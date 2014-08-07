@@ -43,16 +43,6 @@
   <Obstruction>
     <Static width="14.0" depth="14.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>1.0</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/{civ}_support_female_citizen_house
-    </Entities>
-    <Technologies datatype="tokens">
-      pair_house_01
-      pair_house_02
-    </Technologies>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_house.xml</select>

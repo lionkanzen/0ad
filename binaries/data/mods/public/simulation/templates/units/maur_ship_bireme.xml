@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_mechanical_ship_bireme">
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>barb</Civ>
     <SpecificName>Yudhpot</SpecificName>
     <History>Light Warship.</History>
     <Icon>units/maur_ship_bireme.png</Icon>

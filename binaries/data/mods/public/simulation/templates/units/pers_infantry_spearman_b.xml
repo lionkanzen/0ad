@@ -1,12 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_spearman">
-  <Builder>
-    <Entities datatype="tokens">
-      structures/pers_stables
-      structures/pers_apadana
-      structures/{civ}_wonder
-    </Entities>
-  </Builder>
   <Cost>
     <BuildTime>8</BuildTime>
   </Cost>
@@ -14,7 +7,7 @@
     <Max>80</Max>
   </Health>
   <Identity>
-    <Civ>pers</Civ>
+    <Civ>barb</Civ>
     <SelectionGroupName>units/pers_infantry_spearman_b</SelectionGroupName>
     <GenericName>Shieldbearer</GenericName>
     <SpecificName>Sparabara</SpecificName>

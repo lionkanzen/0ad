@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
   <Identity>
-    <Civ>athen</Civ>
+    <Civ>barb</Civ>
 	<GenericName>Athenian Marine</GenericName>
     <SpecificName>Épibatēs Athēnaïkós</SpecificName>
     <History>.</History>

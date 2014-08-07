@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_structure_defense_wallset">
   <Identity>
-    <Civ>ptol</Civ>
+    <Civ>player</Civ>
     <SpecificName>h-n-njwt</SpecificName>
     <History>?</History>
   </Identity>

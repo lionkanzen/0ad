@@ -8,7 +8,7 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_3x3</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>iber</Civ>
+    <Civ>player</Civ>
     <SpecificName>Saroe</SpecificName>
     <History>Corrals have been utilised by people husbanding animals since 'time immemorial'; the Iberians mostly built stone-walled corrals that kept cattle, sheep, goats, pigs, and horses.</History>
   </Identity>

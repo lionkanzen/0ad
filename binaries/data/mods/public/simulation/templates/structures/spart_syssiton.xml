@@ -17,7 +17,7 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_4x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>spart</Civ>
+    <Civ>player</Civ>
     <GenericName>Military Mess Hall</GenericName>
     <SpecificName>Syssítion</SpecificName>
     <Classes datatype="tokens">
@@ -37,19 +37,6 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/spart_hero_leonidas
-      units/spart_hero_brasidas
-      units/spart_hero_agis
-      units/spart_champion_infantry_spear
-    </Entities>
-    <Technologies datatype="tokens">
-      pair_champ_02
-	  hellenes/spartans_agoge
-    </Technologies>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/spartans/syssiton.xml</Actor>
     <FoundationActor>structures/fndn_4x6.xml</FoundationActor>

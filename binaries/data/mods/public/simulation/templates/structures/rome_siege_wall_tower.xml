@@ -27,7 +27,7 @@
     <Max>2000</Max>
   </Health>
   <Identity>
-    <Civ>rome</Civ>
+    <Civ>player</Civ>
 	<GenericName>Siege Wall Tower</GenericName>
     <SpecificName>Turris Circummunitionis</SpecificName>
     <History>(Insert history here)</History>

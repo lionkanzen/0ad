@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_ranged_slinger">
-  <Builder>
-    <Entities datatype="tokens">
-      -structures/{civ}_fortress
-      structures/celt_kennel
-      structures/celt_sb1
-      structures/celt_fortress_b
-      structures/celt_fortress_g
-    </Entities>
-  </Builder>
   <Identity>
-    <Civ>celt</Civ>
+    <Civ>barb</Civ>
     <SelectionGroupName>units/celt_infantry_slinger_b</SelectionGroupName>
     <GenericName>Celtic Slinger</GenericName>
     <SpecificName>Iaosae</SpecificName>

@@ -5,14 +5,6 @@
       <MaxRange>44.0</MaxRange>
     </Ranged>
   </Attack>
-  <Builder>
-    <Entities datatype="tokens">
-      structures/athen_gymnasion
-      structures/athen_theatron
-      structures/athen_prytaneion
-      structures/{civ}_wonder
-    </Entities>
-  </Builder>
   <Cost>
     <Resources>
       <food>0</food>
@@ -21,7 +13,7 @@
     </Resources>
   </Cost>
   <Identity>
-    <Civ>athen</Civ>
+    <Civ>barb</Civ>
     <SelectionGroupName>units/athen_infantry_javelinist_b</SelectionGroupName>
     <GenericName>Thracian Peltast</GenericName>
     <SpecificName>Peltastḗs Thrâx</SpecificName>

@@ -15,7 +15,7 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_5x5</SpawnEntityOnDeath>
 </Health>
   <Identity>
-    <Civ>gaul</Civ>
+    <Civ>player</Civ>
     <SpecificName>Addoldy</SpecificName>
     <History>Celts built large sanctuaries for feasting and worship. One such structure was the Sanctuary of Corent in modern-day France.</History>
   </Identity>

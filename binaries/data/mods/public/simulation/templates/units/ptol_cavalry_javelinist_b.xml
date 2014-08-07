@@ -8,7 +8,7 @@
     </Resources>
   </Cost>
   <Identity>
-    <Civ>ptol</Civ>
+    <Civ>barb</Civ>
 	<SelectionGroupName>units/mace_cavalry_javelinist_b</SelectionGroupName>
 	<GenericName>Tarantine Settler Cavalry</GenericName>
     <SpecificName>Hippeus Tarantinos</SpecificName>

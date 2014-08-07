@@ -11,7 +11,7 @@
     <Max>1320</Max>
   </Health>
   <Identity>
-    <Civ>hele</Civ>
+    <Civ>player</Civ>
     <SpecificName>Pyrgíon</SpecificName>
     <History>Towers were an important part of city fortifications. The defending troops shot arrows at the enemy and poured boiling oil over the assailants.</History>
   </Identity>

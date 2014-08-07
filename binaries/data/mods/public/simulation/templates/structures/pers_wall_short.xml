@@ -5,7 +5,7 @@
     <Height>9.0</Height>
   </Footprint>
   <Identity>
-    <Civ>pers</Civ>
+    <Civ>player</Civ>
 	<SelectionGroupName>structures/pers_wallset_stone</SelectionGroupName>
     <SpecificName>Para</SpecificName>
     <History>Persepolis, the Persian royal capital, was constructed on an immense man-made terrace with strong defensive walls.</History>

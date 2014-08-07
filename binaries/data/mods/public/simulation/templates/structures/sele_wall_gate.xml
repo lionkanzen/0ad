@@ -5,15 +5,15 @@
     <Height>9.0</Height>
   </Footprint>
   <Identity>
-    <Civ>sele</Civ>
+    <Civ>player</Civ>
     <SpecificName>Pýlai</SpecificName>
     <History>(Insert history)</History>
   </Identity>
   <Obstruction>
     <Obstructions>
-      <Right width="12" depth="6.5" x="12.5" z="0"/>
-      <Left width="12" depth="6.5" x="-12.5" z="0"/>
-      <Door width="13" depth="6.5" x="0" z="0"/>
+      <Right width="12" x="12.5" z="0" depth="6.5"/>
+      <Left width="12" x="-12.5" z="0" depth="6.5"/>
+      <Door width="13" x="0" z="0" depth="6.5"/>
     </Obstructions>
   </Obstruction>
   <VisualActor>

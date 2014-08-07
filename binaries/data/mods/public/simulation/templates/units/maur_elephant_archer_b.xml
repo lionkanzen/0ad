@@ -20,7 +20,7 @@
     <Max>330</Max>
   </Health>
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>barb</Civ>
     <VisibleClasses datatype="tokens">Elephant -Cavalry</VisibleClasses>
     <SelectionGroupName>units/maur_elephant_archer_b</SelectionGroupName>
     <GenericName>Elephant Archer</GenericName>

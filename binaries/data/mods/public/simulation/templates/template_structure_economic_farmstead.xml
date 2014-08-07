@@ -34,13 +34,6 @@
   <Obstruction>
     <Static width="12.0" depth="12.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Technologies datatype="tokens">
-      gather_wicker_baskets
-	  gather_farming_plows
-    </Technologies>
-  </ProductionQueue>
   <RallyPoint disable=""/>
   <ResourceDropsite>
     <Types>food</Types>

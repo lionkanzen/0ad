@@ -5,20 +5,13 @@
       <MaxRange>44.0</MaxRange>
     </Ranged>
   </Attack>
-  <Builder>
-    <Entities datatype="tokens">
-      structures/hele_gymnasion
-      structures/hele_theatron
-      structures/hele_prytaneion
-    </Entities>
-  </Builder>
   <Cost>
     <Resources>
       <wood>50</wood>
     </Resources>
   </Cost>
   <Identity>
-    <Civ>hele</Civ>
+    <Civ>barb</Civ>
     <SelectionGroupName>units/hele_infantry_javelinist_b</SelectionGroupName>
     <GenericName>Thracian Peltast</GenericName>
     <SpecificName>Peltastḗs Thrâx</SpecificName>

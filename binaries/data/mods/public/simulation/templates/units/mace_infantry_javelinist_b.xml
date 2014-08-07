@@ -5,20 +5,13 @@
       <MaxRange>44.0</MaxRange>
     </Ranged>
   </Attack>
-  <Builder>
-    <Entities datatype="tokens">
-      structures/mace_siege_workshop
-      structures/mace_theatron
-      structures/mace_library
-    </Entities>
-  </Builder>
   <Cost>
     <Resources>
       <wood>50</wood>
     </Resources>
   </Cost>
   <Identity>
-    <Civ>mace</Civ>
+    <Civ>barb</Civ>
 	<SelectionGroupName>units/mace_infantry_javelinist_b</SelectionGroupName>
 	<GenericName>Agrianian Peltast</GenericName>
     <SpecificName>Peltastes Agrianikos</SpecificName>

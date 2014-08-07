@@ -8,22 +8,13 @@
     <SpawnEntityOnDeath>rubble/rubble_pers_dock</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>pers</Civ>
+    <Civ>player</Civ>
     <SpecificName>Nāvašta</SpecificName>
     <History>Situated on the Mediterranean coast, all Phoenician cities had excellent docks and harbors, the outstanding example being Tyre, which was situated on an island close to the shore.</History>
   </Identity>
   <Obstruction>
     <Static width="23.0" depth="15.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/pers_ship_bireme
-      units/pers_ship_trireme
-    </Entities>
-    <Technologies datatype="tokens">
-      persians/special_equine_transports
-    </Technologies>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/persians/dock.xml</Actor>
   </VisualActor>

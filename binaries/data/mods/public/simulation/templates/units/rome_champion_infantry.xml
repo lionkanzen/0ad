@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_swordsman">
   <Identity>
-    <Civ>rome</Civ>
+    <Civ>barb</Civ>
 	<GenericName>Italic Heavy Infantry</GenericName>
     <SpecificName>Extraordinarius</SpecificName>
 	<SelectionGroupName>units/rome_champion_infantry</SelectionGroupName>

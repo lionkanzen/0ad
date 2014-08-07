@@ -19,7 +19,7 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_4x4</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>gaul</Civ>
+    <Civ>player</Civ>
     <GenericName>Tavern</GenericName>
     <SpecificName>Taberna</SpecificName>
     <History>Taverns are where Celtic warriors go for a tall glass of mead after a hard-won battle. Some might even find rest in one of the back rooms for rent in this seedy establishment.</History>
@@ -35,12 +35,6 @@
     <Radius>32</Radius>
     <Weight>65536</Weight>
   </TerritoryInfluence>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/gaul_champion_fanatic
-    </Entities>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_broch.xml</select>

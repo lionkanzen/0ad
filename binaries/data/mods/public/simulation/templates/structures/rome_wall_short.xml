@@ -8,7 +8,7 @@
     <Max>3000</Max>
   </Health>
   <Identity>
-    <Civ>rome</Civ>
+    <Civ>player</Civ>
 	<SelectionGroupName>structures/rome_wallset_stone</SelectionGroupName>
     <SpecificName>Moenia</SpecificName>
     <History>Roman city walls used a number of innovations to thwart besiegers.</History>

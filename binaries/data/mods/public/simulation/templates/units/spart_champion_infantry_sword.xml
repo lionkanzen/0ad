@@ -8,13 +8,6 @@
       <Hack>28.0</Hack>
     </Charge>
   </Attack>
-  <Builder>
-    <Entities datatype="tokens">
-	  structures/spart_syssiton
-      structures/spart_theatron
-      -structures/{civ}_wallset_stone
-    </Entities>
-  </Builder>
   <Cost>
     <BuildTime>12</BuildTime>
     <Resources>
@@ -25,7 +18,7 @@
     <Max>120</Max>
   </Health>
   <Identity>
-    <Civ>spart</Civ>
+    <Civ>barb</Civ>
 	<GenericName>Skiritai Commando</GenericName>
     <SpecificName>Ékdromos Skiritis</SpecificName>
     <Rank>Elite</Rank>

@@ -45,19 +45,6 @@
   <Obstruction>
     <Static width="17.0" depth="17.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <BatchTimeModifier>0.8</BatchTimeModifier>
-    <Technologies datatype="tokens">
-	  pair_inf_01
-      pair_inf_02
-	  pair_inf_armor_01
-	  pair_inf_armor_02
-	  pair_inf_armor_03
-	  pair_inf_armor_04
-      pair_cav_01
-	  armor_hero_01
-    </Technologies>
-  </ProductionQueue>
   <Sound>
     <SoundGroups>
       <select>interface/select/building/sel_blacksmith.xml</select>

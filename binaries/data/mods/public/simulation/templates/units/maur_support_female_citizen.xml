@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support_female_citizen">
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>barb</Civ>
     <SpecificName>Naari</SpecificName>
     <GenericName>Indian Woman</GenericName>
     <History>Mauryan Female Citizen</History>

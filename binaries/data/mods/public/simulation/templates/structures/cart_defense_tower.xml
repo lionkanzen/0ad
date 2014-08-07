@@ -5,7 +5,7 @@
     <Height>18.0</Height>
   </Footprint>
   <Identity>
-    <Civ>cart</Civ>
+    <Civ>player</Civ>
     <SpecificName>Mijdil</SpecificName>
     <History>Sturdy stone outposts used to keep an eye on desert nomad tribes along the Carthaginian North African frontier.</History>
   </Identity>

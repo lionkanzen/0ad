@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_infantry_melee_pikeman">
-  <Builder>
-    <Entities datatype="tokens">
-      structures/mace_siege_workshop
-      structures/mace_theatron
-      structures/mace_library
-    </Entities>
-  </Builder>
   <Identity>
-    <Civ>mace</Civ>
+    <Civ>barb</Civ>
     <SelectionGroupName>units/mace_infantry_spearman_b</SelectionGroupName>
 	<GenericName>Foot Companion</GenericName>
     <SpecificName>Pezétairos</SpecificName>

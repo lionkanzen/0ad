@@ -5,7 +5,7 @@
     <Height>9.0</Height>
   </Footprint>
   <Identity>
-    <Civ>hele</Civ>
+    <Civ>player</Civ>
 	<SelectionGroupName>structures/hele_wallset_stone</SelectionGroupName>
     <SpecificName>Teîkhos</SpecificName>
     <History>All Hellenic cities were surrounded by stone walls for protection against enemy raids. Some of these fortifications, like the Athenian Long Walls, for example, were massive structures.</History>

@@ -5,7 +5,7 @@
     <Height>12.0</Height>
   </Footprint>
   <Identity>
-    <Civ>sele</Civ>
+    <Civ>player</Civ>
     <SpecificName>Naós</SpecificName>
     <History>.</History>
   </Identity>

@@ -5,13 +5,6 @@
       <MaxRange>40</MaxRange>
     </Ranged>
   </Attack>
-  <Builder>
-    <Entities datatype="tokens">
-      structures/pers_stables
-      structures/pers_apadana
-      structures/{civ}_wonder
-    </Entities>
-  </Builder>
   <Cost>
     <BuildTime>7</BuildTime>
   </Cost>
@@ -19,7 +12,7 @@
     <Max>70</Max>
   </Health>
   <Identity>
-    <Civ>pers</Civ>
+    <Civ>barb</Civ>
 	<SelectionGroupName>units/pers_infantry_javelinist_b</SelectionGroupName>
 	<GenericName>Anatolian Auxiliary</GenericName>
     <SpecificName>Spardiya Takabara</SpecificName>

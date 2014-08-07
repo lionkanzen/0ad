@@ -5,7 +5,7 @@
     <Height>9.0</Height>
   </Footprint>
   <Identity>
-    <Civ>spart</Civ>
+    <Civ>player</Civ>
     <SelectionGroupName>structures/spart_wallset_stone</SelectionGroupName>
     <SpecificName>Teîkhos</SpecificName>
     <History>All Hellenic cities were surrounded by stone walls for protection against enemy raids. Some of these fortifications, like the Athenian Long Walls, for example, were massive structures.</History>

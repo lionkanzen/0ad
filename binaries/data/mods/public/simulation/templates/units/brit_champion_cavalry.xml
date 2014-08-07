@@ -22,7 +22,7 @@
     <Max>200</Max>
   </Health>
   <Identity>
-    <Civ>brit</Civ>
+    <Civ>barb</Civ>
     <Classes datatype="tokens">Chariot</Classes>
 	<GenericName>Celtic Chariot</GenericName>
     <SpecificName>Carbanto</SpecificName>

@@ -13,7 +13,7 @@
     <LoadingRange>2</LoadingRange>
   </GarrisonHolder>
   <Identity>
-    <Civ>rome</Civ>
+    <Civ>player</Civ>
     <SpecificName>Aedes Iovis Optimi Maximi</SpecificName>
     <History>.</History>
   </Identity>

@@ -13,7 +13,7 @@
     <SpawnEntityOnDeath>rubble/rubble_kart_dock</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>cart</Civ>
+    <Civ>player</Civ>
     <GenericName>Commercial Port</GenericName>
     <SpecificName>Namel</SpecificName>
     <History>The Carthaginians were famous for their sea trade. Carthage itself had an entire harbor dedicated to nothing more than commercial sea trade.</History>
@@ -22,15 +22,6 @@
   <Obstruction>
     <Static width="30.0" depth="19.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/cart_ship_bireme
-      units/cart_ship_trireme
-    </Entities>
-    <Technologies datatype="tokens">
-      -training_naval_architects
-    </Technologies>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/carthaginians/dock.xml</Actor>
     <FoundationActor>structures/fndn_6x4_dock.xml</FoundationActor>

@@ -40,7 +40,7 @@
     </Charge>
   </Attack>
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>barb</Civ>
     <GenericName>Warrior</GenericName>
     <SpecificName>Yōddha</SpecificName>
 	<SelectionGroupName>units/maur_champion_infantry</SelectionGroupName>

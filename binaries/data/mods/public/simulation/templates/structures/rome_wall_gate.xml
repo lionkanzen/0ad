@@ -5,15 +5,15 @@
     <Height>9.0</Height>
   </Footprint>
   <Identity>
-    <Civ>rome</Civ>
+    <Civ>player</Civ>
     <SpecificName>Porta</SpecificName>
     <History>Rome had a number of gates piercing its city walls. One of the most famous of these was the Appian Gate.</History>
   </Identity>
   <Obstruction>
     <Obstructions>
-      <Right width="14" depth="7" x="12" z="0"/>
-      <Left width="14" depth="7" x="-12" z="0"/>
-      <Door width="10" depth="7" x="0" z="0"/>
+      <Right width="14" x="12" z="0" depth="7"/>
+      <Left width="14" x="-12" z="0" depth="7"/>
+      <Door width="10" x="0" z="0" depth="7"/>
     </Obstructions>
   </Obstruction>
   <VisualActor>

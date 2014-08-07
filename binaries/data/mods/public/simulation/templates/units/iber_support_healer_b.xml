@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_support_healer">
   <Identity>
-    <Civ>iber</Civ>
+    <Civ>barb</Civ>
     <SelectionGroupName>units/iber_support_healer_b</SelectionGroupName>
 	<GenericName>Priestess of Ataekina</GenericName>
     <SpecificName>Emakumezko Apaiz de Ataekina</SpecificName>

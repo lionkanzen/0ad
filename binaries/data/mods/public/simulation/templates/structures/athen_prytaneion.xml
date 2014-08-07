@@ -20,7 +20,7 @@
     <Max>2000</Max>
   </Health>
   <Identity>
-    <Civ>athen</Civ>
+    <Civ>player</Civ>
     <GenericName>Council Chamber</GenericName>
     <SpecificName>Prytaneîon</SpecificName>
     <Tooltip>Train heroes. Research special technologies.</Tooltip>
@@ -37,18 +37,6 @@
       <death>attack/destruction/building_collapse_large.xml</death>
     </SoundGroups>
   </Sound>
-  <ProductionQueue>
-    <BatchTimeModifier>0.7</BatchTimeModifier>
-    <Entities datatype="tokens">
-      units/athen_hero_themistocles
-      units/athen_hero_pericles
-      units/athen_hero_iphicrates
-    </Entities>
-    <Technologies datatype="tokens">
-      hellenes/special_long_walls
-      hellenes/special_iphicratean_reforms
-    </Technologies>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/athenians/prytaneion.xml</Actor>
   </VisualActor>

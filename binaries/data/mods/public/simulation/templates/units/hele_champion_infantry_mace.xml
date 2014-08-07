@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_infantry_pikeman">
   <Identity>
-    <Civ>hele</Civ>
+    <Civ>barb</Civ>
 	<GenericName>Foot Companion</GenericName>
     <SpecificName>Pezétairos</SpecificName>
     <Tooltip>Macedonian Champion Pikeman.

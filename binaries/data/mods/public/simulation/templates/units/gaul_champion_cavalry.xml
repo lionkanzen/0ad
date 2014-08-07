@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_champion_cavalry_spearman">
   <Identity>
-    <Civ>gaul</Civ>
+    <Civ>barb</Civ>
     <GenericName>Gallic Noble Cavalry</GenericName>
     <SpecificName>Gallic Brihent</SpecificName>
 	<SelectionGroupName>units/gaul_champion_cavalry</SelectionGroupName>

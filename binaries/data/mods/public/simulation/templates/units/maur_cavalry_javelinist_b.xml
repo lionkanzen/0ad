@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Entity parent="template_unit_cavalry_ranged_javelinist">
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>barb</Civ>
 	<SelectionGroupName>units/maur_cavalry_javelinist_b</SelectionGroupName>
     <GenericName>Indian Light Cavalry</GenericName>
     <SpecificName>Ashwarohi</SpecificName>

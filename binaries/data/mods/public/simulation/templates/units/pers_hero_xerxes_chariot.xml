@@ -37,7 +37,7 @@
     <Max>1000</Max>
   </Health>
   <Identity>
-    <Civ>pers</Civ>
+    <Civ>barb</Civ>
     <Classes datatype="tokens">Chariot</Classes>
 	<GenericName>Xerxes I</GenericName>
     <SpecificName>Xsayarsa I</SpecificName>

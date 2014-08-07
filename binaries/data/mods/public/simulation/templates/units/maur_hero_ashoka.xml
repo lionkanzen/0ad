@@ -28,7 +28,7 @@
     <Max>1000</Max>
   </Health>
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>barb</Civ>
     <GenericName>Ashoka the Great</GenericName>
     <SpecificName>Aśoka Devānāmpriya</SpecificName>
     <Classes datatype="tokens">Ashoka</Classes>

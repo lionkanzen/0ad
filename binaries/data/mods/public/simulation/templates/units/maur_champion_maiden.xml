@@ -12,7 +12,7 @@
     </Resources>
   </Cost>
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>barb</Civ>
     <GenericName>Maiden Guard</GenericName>
     <SpecificName>Visha Kanya</SpecificName>
 	<SelectionGroupName>units/maur_champion_maiden</SelectionGroupName>

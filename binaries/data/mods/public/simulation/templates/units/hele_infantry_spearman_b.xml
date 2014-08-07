@@ -8,20 +8,13 @@
       <MaxRange>6.0</MaxRange>
     </Charge>
   </Attack>
-  <Builder>
-    <Entities datatype="tokens">
-      structures/hele_gymnasion
-      structures/hele_theatron
-      structures/hele_prytaneion
-    </Entities>
-  </Builder>
   <Cost>
     <Resources>
       <wood>60</wood>
     </Resources>
   </Cost>
   <Identity>
-    <Civ>hele</Civ>
+    <Civ>barb</Civ>
 	<SelectionGroupName>units/hele_infantry_spearman_b</SelectionGroupName>
     <GenericName>Greek Hoplite</GenericName>
 	<SpecificName>Hoplī́tēs Hellēnikós</SpecificName>

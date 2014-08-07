@@ -19,13 +19,13 @@
     <SpawnEntityOnDeath>rubble/rubble_stone_6x6</SpawnEntityOnDeath>
   </Health>
   <Identity>
-    <Civ>pers</Civ>
+    <Civ>player</Civ>
     <GenericName>Persian Palace</GenericName>
     <SpecificName>Palace</SpecificName>
     <Classes datatype="tokens">
 	  Palace
 	</Classes>
-    <History></History>
+    <History/>
     <Icon>structures/palace.png</Icon>
     <Tooltip>Build Limit: 1.</Tooltip>
   </Identity>

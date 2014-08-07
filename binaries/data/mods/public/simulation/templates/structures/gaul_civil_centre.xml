@@ -5,7 +5,7 @@
     <Height>8.0</Height>
   </Footprint>
   <Identity>
-    <Civ>gaul</Civ>
+    <Civ>player</Civ>
     <SpecificName>Caer</SpecificName>
     <History>This was be the center of the town, a great hall where the clan leader resided. All political matters were probably performed inside such a structure.</History>
   </Identity>
@@ -15,13 +15,6 @@
   <Obstruction>
     <Static width="25.0" depth="25.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/gaul_infantry_spearman_b
-      units/gaul_infantry_javelinist_b
-      units/gaul_cavalry_javelinist_b
-    </Entities>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/gauls/civic_centre.xml</Actor>
   </VisualActor>

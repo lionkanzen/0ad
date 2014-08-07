@@ -18,7 +18,7 @@
     <Max>1200</Max>
   </Health>
   <Identity>
-    <Civ>pers</Civ>
+    <Civ>player</Civ>
     <SpecificName>Huvādā</SpecificName>
     <History>Apart from the Great King and his close relatives, the satraps resided in splendid spacious residences, which included palaces, pavilions and gardens.</History>
   </Identity>

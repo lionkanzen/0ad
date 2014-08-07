@@ -5,7 +5,7 @@
     <Height>3.0</Height>
   </Footprint>
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>barb</Civ>
     <SpecificName>Vaishya</SpecificName>
     <History>Vaishya.</History>
     <Icon>units/hele_support_trader.png</Icon>

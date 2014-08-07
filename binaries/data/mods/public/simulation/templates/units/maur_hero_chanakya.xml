@@ -24,7 +24,7 @@
     <Max>600</Max>
   </Health>
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>barb</Civ>
     <Classes datatype="tokens">Hero Healer Organic</Classes>
 	<GenericName>Acharya Chanakya</GenericName>
     <SpecificName>Acharya Chāṇakya</SpecificName>

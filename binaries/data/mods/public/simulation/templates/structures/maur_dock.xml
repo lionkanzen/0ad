@@ -5,19 +5,13 @@
     <Height>8.0</Height>
   </Footprint>
   <Identity>
-    <Civ>maur</Civ>
+    <Civ>player</Civ>
     <SpecificName>Naukasthanaka</SpecificName>
     <History>Dock.</History>
   </Identity>
   <Obstruction>
     <Static width="25.0" depth="20.0"/>
   </Obstruction>
-  <ProductionQueue>
-    <Entities datatype="tokens">
-      units/maur_ship_bireme
-      units/maur_ship_trireme
-    </Entities>
-  </ProductionQueue>
   <VisualActor>
     <Actor>structures/mauryans/dock.xml</Actor>
   </VisualActor>
