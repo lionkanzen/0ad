@@ -1,0 +1,44 @@
+{
+	"Code": "player",
+	"Culture": "player",
+	"Name": "Humans",
+	"Emblem": "session/portraits/emblems/emblem_human.png",
+	"History": "Your glorious civilization",
+	"Music":[
+		],
+	"Factions":
+	[
+		{
+			"Name": "",
+			"Description": "",
+			"Technologies":
+			[
+			],
+			"Heroes":
+			[
+			]
+		}
+	],
+	"CivBonuses":
+	[
+	],
+	"TeamBonuses":
+	[
+	],
+	"Structures":
+	[
+	],
+	"StartEntities":
+	[
+	],
+	"Formations":
+	[
+	],
+	"AINames":
+	[
+	],
+	"SkirmishReplacements":
+	{
+	},
+	"SelectableInGameSetup": true
+}

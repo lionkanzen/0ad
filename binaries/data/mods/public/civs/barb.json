@@ -1,0 +1,49 @@
+{
+	"Code": "barb",
+	"Culture": "barb",
+	"Name": "Barbarians",
+	"Emblem": "session/portraits/emblems/emblem_barbs.png",
+	"History": "Barbarians roam the maps and try to destroy your precious palace! Kill them all!",
+	"Music":[
+			{"File":"Highland_Mist.ogg", "Type":"peace"},
+			{"File":"Water's_Edge.ogg", "Type":"peace"},
+			{"File":"Celtic_Pride.ogg", "Type":"peace"},
+			{"File":"Celtica.ogg", "Type":"peace"}
+		],
+	"Factions":
+	[
+		{
+			"Name": "Barbarians",
+			"Description": "Barbarians roam the maps and try to destroy your precious palace! Kill them all!",
+			"Technologies":
+			[
+			],
+			"Heroes":
+			[
+			]
+		} 
+	],
+	"CivBonuses":
+	[
+	],
+	"TeamBonuses":
+	[
+	],
+	"Structures":
+	[
+	],
+	"StartEntities":
+	[
+	],
+	"Formations":
+	[
+	],
+	"AINames":
+	[
+		"Barbaros"
+	],
+	"SkirmishReplacements":
+	{
+	},
+	"SelectableInGameSetup": false
+}
