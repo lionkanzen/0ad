@@ -1883,6 +1883,12 @@ GuiInterface.prototype.SetPathfinderDebugOverlay = function(player, enabled)
 	cmpPathfinder.SetDebugOverlay(enabled);
 };
 
+GuiInterface.prototype.SetPathfinderHierDebugOverlay = function(player, enabled)
+{
+	var cmpPathfinder = Engine.QueryInterface(SYSTEM_ENTITY, IID_Pathfinder);
+	cmpPathfinder.SetHierDebugOverlay(enabled);
+};
+
 GuiInterface.prototype.SetObstructionDebugOverlay = function(player, enabled)
 {
 	var cmpObstructionManager = Engine.QueryInterface(SYSTEM_ENTITY, IID_ObstructionManager);
@@ -2003,6 +2009,7 @@ var exposedFunctions = {
 
 	"IsMapRevealed": 1,
 	"SetPathfinderDebugOverlay": 1,
+	"SetPathfinderHierDebugOverlay": 1,
 	"SetObstructionDebugOverlay": 1,
 	"SetMotionDebugOverlay": 1,
 	"SetRangeDebugOverlay": 1,
