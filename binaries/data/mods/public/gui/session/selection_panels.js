@@ -372,28 +372,7 @@ g_SelectionPanels.Gate = {
 		for (var i in selection)
 		{
 			var state = GetEntityState(selection[i]);
-			if (hasClass(state, "LongWall") && !state.gate && !longWallTypes[state.template])
-			{
-				var gateTemplate = getWallGateTemplate(state.id);
-				if (gateTemplate)
-				{
-					var tooltipString = GetTemplateDataWithoutLocalization(state.template).gateConversionTooltip;
-					if (!tooltipString)
-					{
-						warn(state.template + " is supposed to be convertable to a gate, but it's missing the GateConversionTooltip in the Identity template");
-						tooltipString = "";
-					}
-					walls.push({
-						"tooltip": translate(tooltipString),
-						"template": gateTemplate,
-						"callback": function (item) { transformWallToGate(item.template); }
-					});
-				}
-
-				// We only need one entity per type.
-				longWallTypes[state.template] = true;
-			}
-			else if (state.gate && !gates.length)
+			if (state.gate && !gates.length)
 			{
 				gates.push({
 					"gate": state.gate,
@@ -424,49 +403,20 @@ g_SelectionPanels.Gate = {
 	},
 	"setTooltip": function(data)
 	{
-		var tooltip = data.item.tooltip;
-		if (data.item.template)
-		{
-			data.template = GetTemplateData(data.item.template);
-			data.wallCount = data.selection.reduce(function (count, ent) {
-					var state = GetEntityState(ent);
-					if (hasClass(state, "LongWall") && !state.gate)
-						count++;
-					return count;
-				}, 0);
-
-			tooltip += "\n" + getEntityCostTooltip(data.template, data.wallCount);
-
-
-			data.neededResources = Engine.GuiInterfaceCall("GetNeededResources", multiplyEntityCosts(data.template, data.wallCount));
-			if (data.neededResources)
-				tooltip += getNeededResourcesTooltip(data.neededResources);
-		}
-		data.button.tooltip = tooltip;
+		data.button.tooltip = data.item.tooltip;
 	},
 	"setGraphics": function(data)
 	{
-		data.affordableMask.hidden == data.neededResources ? true : false;
 		var gateIcon;
 		if (data.item.gate)
 		{
-			// If already a gate, show locking actions
+			// Show locking actions
 			gateIcon = "icons/lock_" + GATE_ACTIONS[data.item.locked ? 0 : 1] + "ed.png";
 			if (data.item.gate.locked === undefined)
 				data.guiSelection.hidden = false
 			else
 				data.guiSelection.hidden = data.item.gate.locked != data.item.locked;
 		}
-		else
-		{
-			// otherwise show gate upgrade icon
-			var template = GetTemplateData(data.item.template);
-			if (!template)
-				return;
-			gateIcon = data.template.icon ? "portraits/" + data.template.icon : "icons/gate_closed.png";
-			data.guiSelection.hidden = true;
-		}
-
 		data.icon.sprite = "stretched:session/" + gateIcon;
 	},
 	"setPosition": function(data)
@@ -533,6 +483,142 @@ g_SelectionPanels.Pack = {
 			data.icon.sprite = "stretched:session/icons/unpack.png";
 		else
 			data.icon.sprite = "stretched:session/icons/pack.png";
+	},
+	"setPosition": function(data)
+	{
+		var index = data.i + getNumberOfRightPanelButtons();
+		setPanelObjectPosition(data.button, index, data.rowLength);
+	},
+};
+
+// UPGRADE
+g_SelectionPanels.Upgrade = {
+	"getMaxNumberOfItems": function()
+	{
+		return 24 - getNumberOfRightPanelButtons();
+	},
+	"getItems": function(unitEntState, selection)
+	{
+		// Interface becomes complicated with multiple units and this is meant per-entity, so prevent it if the selection has multiple units.
+		if (selection.length > 1)
+			return false;
+		var items = [];
+
+		if (!unitEntState.upgrade)
+			return false;
+		
+		for each (var upgrade in unitEntState.upgrade.upgrades)
+		{
+			var item = {};
+			item.entType = upgrade.entity;
+			item.template = GetTemplateData(upgrade.entity);
+			if (!item.template) // abort if no template
+				return false;
+
+			item.icon = upgrade.icon;
+			if (!item.icon)
+				item.icon = "portraits/" + item.template.icon;
+
+			if (upgrade.requiredTechnology !== null)
+			{
+				item.requiredTechnology = upgrade.requiredTechnology;
+				if (!item.requiredTechnology && item.template.requiredTechnology)
+					item.requiredTechnology = item.template.requiredTechnology
+			}
+			item.cost = upgrade.cost;
+			item.time = upgrade.time;
+
+			if (unitEntState.upgrade.progress === undefined)
+			{
+				item.upgrading = UPGRADING_NOT_STARTED;
+				item.tooltip = sprintf(translate("Upgrade into a %(name)s.%(tooltip)s"), { name: item.template.name.generic, tooltip: (upgrade.tooltip? "\n" + upgrade.tooltip : "") });
+				item.callback = function(data) { upgradeEntity(data.entType); };
+			}
+			else if (unitEntState.upgrade.template !== upgrade.entity)
+			{
+				item.upgrading = UPGRADING_CHOSEN_OTHER;
+				item.tooltip = translate("Cannot upgrade when the entity is already upgrading.");
+				item.callback = function(data) { };
+			}
+			else
+			{
+				item.upgrading = unitEntState.upgrade.progress;
+				item.tooltip = translate("Cancel Upgrading");
+				item.callback = function(data) { cancelUpgradeEntity(); };
+			}
+			items.push(item);
+		}
+		return items;
+	},
+	"addData" : function(data)
+	{
+		data.item.technologyEnabled = true;
+		if (data.item.requiredTechnology)
+			data.item.technologyEnabled = Engine.GuiInterfaceCall("IsTechnologyResearched", data.item.requiredTechnology);
+		if (data.item.cost)
+		{
+			var totalCost = {};
+			for (var i in data.item.cost)
+				totalCost[i] = data.item.cost[i];
+			data.item.neededResources = Engine.GuiInterfaceCall("GetNeededResources", totalCost);
+		}
+		data.item.limits = getEntityLimitAndCount(data.playerState, data.item.entType);
+		return true;
+	},
+	"setAction": function(data)
+	{
+		data.button.onPress = function() { data.item.callback(data.item); };
+	},
+	"setTooltip": function(data)
+	{
+		var tooltip = data.item.tooltip;
+
+		if (data.item.upgrading !== UPGRADING_NOT_STARTED)
+		{
+			data.button.tooltip = tooltip;
+			return;
+		}
+
+		if (data.item.cost)
+			tooltip += "\n" + getEntityCostTooltip(data.item);
+		
+		tooltip += formatLimitString(data.item.limits.entLimit, data.item.limits.entCount, data.item.limits.entLimitChangers);
+		if (!data.item.technologyEnabled)
+		{
+			var techName = getEntityNames(GetTechnologyData(data.item.requiredTechnology));
+			tooltip += "\n" + sprintf(translate("Requires %(technology)s"), { technology: techName });
+		}
+		if (data.item.neededResources)
+			tooltip += getNeededResourcesTooltip(data.item.neededResources);
+
+		data.button.tooltip = tooltip;
+	},
+	"setGraphics": function(data)
+	{
+		var grayscale = "";
+		if (data.item.upgrading == UPGRADING_CHOSEN_OTHER || !data.item.technologyEnabled || (data.item.limits.canBeAddedCount == 0 && data.item.upgrading == UPGRADING_NOT_STARTED))
+		{
+			data.button.enabled = false;
+			grayscale = "grayscale:";
+			data.affordableMask.hidden = false;
+			data.affordableMask.sprite = "colour: 0 0 0 127";
+		}
+		else if (data.item.upgrading == UPGRADING_NOT_STARTED && data.item.neededResources)
+		{
+			data.button.enabled = false;
+			data.affordableMask.hidden = false;
+			data.affordableMask.sprite = resourcesToAlphaMask(data.item.neededResources);
+		}
+		
+		data.icon.sprite = "stretched:" + grayscale + "session/" + data.item.icon;
+
+		var guiObject = Engine.GetGUIObjectByName("unitUpgradeProgressSlider["+data.i+"]");
+		var size = guiObject.size;
+		if (data.item.upgrading < 0)
+			size.top = size.right;
+		else
+			size.top = size.left + Math.round(Math.max(0,data.item.upgrading) * (size.right - size.left));
+		guiObject.size = size;
 	},
 	"setPosition": function(data)
 	{
@@ -1015,6 +1101,7 @@ var g_PanelsOrder = [
 	// RIGHT PANE
 	"Gate", // must always be shown on gates
 	"Pack", // must always be shown on packable entities
+	"Upgrade", // must always be shown on upgradable entities
 	"Training",
 	"Construction",
 	"Research", // normal together with training

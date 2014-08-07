@@ -181,6 +181,7 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		"gate": null,
 		"guard": null,
 		"pack": null,
+		"upgrade" : null,
 		"player": -1,
 		"position": null,
 		"production": null,
@@ -239,6 +240,16 @@ GuiInterface.prototype.GetEntityState = function(player, ent)
 		ret.pack = {
 			"packed": cmpPack.IsPacked(),
 			"progress": cmpPack.GetProgress(),
+		};
+	}
+
+	var cmpUpgrade = Engine.QueryInterface(ent, IID_Upgrade);
+	if (cmpUpgrade)
+	{
+		ret.upgrade = {
+			"upgrades" : cmpUpgrade.GetUpgrades(),
+			"progress": cmpUpgrade.GetProgress(),
+			"template": cmpUpgrade.GetUpgradingTo()
 		};
 	}
 
@@ -692,7 +703,6 @@ GuiInterface.prototype.GetTemplateData = function(player, extendedName)
 		};
 		ret.icon = template.Identity.Icon;
 		ret.tooltip =  template.Identity.Tooltip;
-		ret.gateConversionTooltip =  template.Identity.GateConversionTooltip;
 		ret.requiredTechnology = template.Identity.RequiredTechnology;
 		ret.visibleIdentityClasses = GetVisibleIdentityClasses(template.Identity);
 	}

@@ -8,6 +8,10 @@ const BARTER_ACTIONS = ["Sell", "Buy"];
 // Gate constants
 const GATE_ACTIONS = ["lock", "unlock"];
 
+// upgrade constants
+const UPGRADING_NOT_STARTED = -2;
+const UPGRADING_CHOSEN_OTHER = -1;
+
 // ==============================================
 // BARTER HELPERS
 // Resources to sell on barter panel
