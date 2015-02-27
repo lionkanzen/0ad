@@ -65,6 +65,12 @@ attribute vec2 a_uv1;
   attribute vec4 a_skinWeights;
 #endif
 
+#if USE_INSTANCING
+	attribute mat4 a_instancingTransform0;
+//attribute vec4 a_instancingTransform1;
+//	attribute vec4 a_instancingTransform2;
+//	attribute vec4 a_instancingTransform3;
+#endif
 
 vec4 fakeCos(vec4 x)
 {
@@ -75,7 +81,8 @@ vec4 fakeCos(vec4 x)
 
 void main()
 {
-  mat4 instancingTransform = instancingTransforms[gl_InstanceIDARB];//mat4(a_instancingTransform0, a_instancingTransform1, a_instancingTransform2, a_instancingTransform3);
+	//	mat4 instancingTransform = instancingTransforms[gl_InstanceIDARB];
+	mat4 instancingTransform = a_instancingTransform0;// mat4(a_instancingTransform0, a_instancingTransform1, a_instancingTransform2, a_instancingTransform3);
 
   #if USE_GPU_SKINNING
     vec3 p = vec3(0.0);

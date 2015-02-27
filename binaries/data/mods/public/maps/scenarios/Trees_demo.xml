@@ -15,8 +15,8 @@
 	{
 		//var ent = Engine.AddEntity("gaia/flora_tree_cretan_date_palm_patch");	// stupid amount of polys
 		//var ent = Engine.AddEntity("gaia/flora_tree_palm_tropical");		// /2 draw calls, x1.2 more polys than oak
-		var ent = Engine.AddEntity("gaia/flora_tree_pine");		// /2 draw calls, x1.2 more polys than oak
-		//var ent = Engine.AddEntity("gaia/flora_tree_pine_novar");
+		//var ent = Engine.AddEntity("gaia/flora_tree_pine");		// /2 draw calls, x1.2 more polys than oak
+		var ent = Engine.AddEntity("gaia/flora_tree_pine_novar");
 		//var ent = Engine.AddEntity("gaia/flora_tree_oak");		// low amount of polys
 		//var ent = Engine.AddEntity("gaia/flora_tree_poplar_lombardy");	// even lower
 

@@ -155,7 +155,7 @@ public:
 	 */
 	virtual void RenderModel(const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data) = 0;
 
-	virtual void RenderModelInstanced(const CShaderProgramPtr& shader, int streamflags, CModel* model, size_t count) { };
+	virtual void RenderModelInstanced(const CShaderProgramPtr& shader, const std::vector<CMatrix3D>& instanceTransforms, CModel* model, size_t count) {};
 	
 	virtual bool IsInstanced() const = 0;
 

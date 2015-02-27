@@ -47,6 +47,9 @@
 # include "lib/sysdep/arch/x86_x64/x86_x64.h"
 #endif
 
+
+#define MAXINSTANCE 6000
+
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ModelRenderer implementation
 
@@ -215,11 +218,6 @@ struct ShaderModelRendererInternals
 
 	/// List of submitted models for rendering in this frame
 	std::vector<CModel*> submissions[CRenderer::CULL_MAX];
-
-#define NUM_INSTANCING_ARRAYS 256
-	VertexArray instancingArray[NUM_INSTANCING_ARRAYS];
-	VertexArray::Attribute instancingTransform[NUM_INSTANCING_ARRAYS][4];
-	size_t currentInstancingArray;
 };
 
 
@@ -228,21 +226,6 @@ ShaderModelRenderer::ShaderModelRenderer(ModelVertexRendererPtr vertexrenderer)
 {
 	m = new ShaderModelRendererInternals(this);
 	m->vertexRenderer = vertexrenderer;
-
-	for (size_t j = 0; j < NUM_INSTANCING_ARRAYS; ++j)
-	{
-		for (size_t i = 0; i < 4; ++i)
-		{
-			m->instancingTransform[j][i].type = GL_FLOAT;
-			m->instancingTransform[j][i].elems = 4;
-			m->instancingArray[j].AddAttribute(&m->instancingTransform[j][i]);
-		}
-
-		m->instancingArray[j].SetNumVertices(64);
-		m->instancingArray[j].Layout();
-	}
-
-	m->currentInstancingArray = 0;
 }
 
 ShaderModelRenderer::~ShaderModelRenderer()
@@ -713,7 +696,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 							if (i < numModels-1)
 							{
 								newModel = models[i+1];
-								while (i < numModels-1 && instances < 250 && !hasChanged(model, newModel)) {
+								while (i < numModels-1 && instances < MAXINSTANCE && !hasChanged(model, newModel)) {
 									model = models[++i];
 									instances++;
 									CMatrix3D transform = model->GetTransform();
@@ -820,8 +803,8 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						
 						if (m->vertexRenderer->IsInstanced())
 						{
-							shader->Uniform(str_instancingTransforms, instancingTransforms.size(), &instancingTransforms[0]);
-							m->vertexRenderer->RenderModelInstanced(shader, streamflags, model, instances);
+							//shader->Uniform(str_instancingTransforms, instancingTransforms.size(), &instancingTransforms[0]);
+							m->vertexRenderer->RenderModelInstanced(shader, instancingTransforms, model, instances);
 							instances = 0;
 							instancingTransforms.clear();
 						}

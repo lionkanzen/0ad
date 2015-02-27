@@ -39,7 +39,6 @@
 
 #include "third_party/mikktspace/weldmesh.h"
 
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // InstancingModelRenderer implementation
 
@@ -54,10 +53,16 @@ struct IModelDef : public CModelDefRPrivate
 	VertexArray::Attribute m_Tangent;
 	VertexArray::Attribute m_BlendJoints; // valid iff gpuSkinning == true
 	VertexArray::Attribute m_BlendWeights; // valid iff gpuSkinning == true
-
 	/// The number of UVs is determined by the model
 	std::vector<VertexArray::Attribute> m_UVs;
 
+	// dynamic array.
+	VertexArray m_InstancingArray;
+	VertexArray::Attribute m_InstancingTransform[4];
+	
+	// VAO object
+	GLuint m_VAO;
+	
 	/// Indices are the same for all models, so share them
 	VertexIndexArray m_IndexArray;
 
@@ -66,7 +71,7 @@ struct IModelDef : public CModelDefRPrivate
 
 
 IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateTangents)
-	: m_IndexArray(GL_STATIC_DRAW), m_Array(GL_STATIC_DRAW)
+	: m_IndexArray(GL_STATIC_DRAW), m_Array(GL_STATIC_DRAW), m_InstancingArray(GL_STREAM_DRAW)
 {
 	size_t numVertices = mdef->GetNumVertices();
 
@@ -95,6 +100,13 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 		m_BlendWeights.type = GL_UNSIGNED_BYTE;
 		m_BlendWeights.elems = 4;
 		m_Array.AddAttribute(&m_BlendWeights);
+	}
+	
+	for (size_t i = 0; i < 4; ++i)
+	{
+		m_InstancingTransform[i].type = GL_FLOAT;
+		m_InstancingTransform[i].elems = 4;
+		m_InstancingArray.AddAttribute(&m_InstancingTransform[i]);
 	}
 	
 	if (calculateTangents)
@@ -208,7 +220,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 		
 		m_Array.SetNumVertices(numVertices);
 		m_Array.Layout();
-
+		
 		VertexArrayIterator<CVector3D> Position = m_Position.GetIterator<CVector3D>();
 		VertexArrayIterator<CVector3D> Normal = m_Normal.GetIterator<CVector3D>();
 
@@ -244,6 +256,9 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 		m_IndexArray.Upload();
 		m_IndexArray.FreeBackingStore();
 	}
+	m_InstancingArray.SetNumVertices(6000);
+	m_InstancingArray.Layout();
+	m_InstancingArray.Upload();
 }
 
 
@@ -390,9 +405,36 @@ void InstancingModelRenderer::RenderModel(const CShaderProgramPtr& shader, int U
 
 }
 
-void InstancingModelRenderer::RenderModelInstanced(const CShaderProgramPtr& shader, int UNUSED(streamflags), CModel* model, size_t count)
+void InstancingModelRenderer::RenderModelInstanced(const CShaderProgramPtr& shader, const std::vector<CMatrix3D>& instanceTransforms, CModel* model, size_t count)
 {
 	CModelDefPtr mdldef = model->GetModelDef();
+	
+	GLsizei stride = (GLsizei)m->imodeldef->m_InstancingArray.GetStride();
+	
+	size_t numVertices = m->imodeldef->m_InstancingArray.GetNumVertices();
+	
+	for (int i = 0; i < 4; ++i)
+	{
+		VertexArrayIterator<CVector4D> Instance = m->imodeldef->m_InstancingTransform[i].GetIterator<CVector4D>();
+		for(size_t j = 0; j < instanceTransforms.size() && j < numVertices; ++j)
+		{
+			memcpy(&Instance[j], &instanceTransforms[j]._data2d[i], 4*4);
+/*			Instance[j] = instanceTransforms[j]._data2d[i];
+			Instance[j].Y = instanceTransforms[j]._data2d[i][1];
+			Instance[j].Z = instanceTransforms[j]._data2d[i][2];
+			Instance[j].W = instanceTransforms[j]._data2d[i][3];
+*/		}
+	}
+	m->imodeldef->m_InstancingArray.Upload();
+	
+	m->imodeldef->m_InstancingArray.PrepareForRendering();
+
+	u8* base = m->imodeldef->m_InstancingArray.Bind();
+	
+	shader->VertexAttribPointer(str_a_instancingTransform0, 4, GL_FLOAT, GL_FALSE, stride, base + m->imodeldef->m_InstancingTransform[0].offset);
+	shader->VertexAttribPointer(str_a_instancingTransform1, 4, GL_FLOAT, GL_FALSE, stride, base + m->imodeldef->m_InstancingTransform[1].offset);
+	shader->VertexAttribPointer(str_a_instancingTransform2, 4, GL_FLOAT, GL_FALSE, stride, base + m->imodeldef->m_InstancingTransform[2].offset);
+	shader->VertexAttribPointer(str_a_instancingTransform3, 4, GL_FLOAT, GL_FALSE, stride, base + m->imodeldef->m_InstancingTransform[3].offset);
 
 	// render the lot
 	size_t numFaces = mdldef->GetNumFaces();
