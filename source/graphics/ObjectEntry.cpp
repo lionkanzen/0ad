@@ -127,6 +127,7 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	CModel* model = new CModel(objectManager.GetSkeletonAnimManager(), m_Simulation);
 	delete m_Model;
 	m_Model = model;
+	//model->SetMaterial(g_Renderer.GetMaterialManager().LoadMaterial(VfsPath("art/materials/basic_wind.xml")));
 	model->SetMaterial(g_Renderer.GetMaterialManager().LoadMaterial(m_Base->m_Material));
 	model->GetMaterial().AddStaticUniform("objectColor", CVector4D(m_Color.r, m_Color.g, m_Color.b, m_Color.a));
 	model->InitModel(modeldef);

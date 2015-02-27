@@ -313,6 +313,8 @@ void Render()
 	g_Renderer.EndFrame();
 
 	PROFILE2_ATTR("draw calls: %d", (int)g_Renderer.GetStats().m_DrawCalls);
+	PROFILE2_ATTR("instance calls: %d", (int)g_Renderer.GetStats().m_InstancedCalls);
+	PROFILE2_ATTR("average nb of elements per instance: %f", (int)g_Renderer.GetStats().m_InstancedCalls/(float)g_Renderer.GetStats().m_InstancedElements);
 	PROFILE2_ATTR("terrain tris: %d", (int)g_Renderer.GetStats().m_TerrainTris);
 	PROFILE2_ATTR("water tris: %d", (int)g_Renderer.GetStats().m_WaterTris);
 	PROFILE2_ATTR("model tris: %d", (int)g_Renderer.GetStats().m_ModelTris);

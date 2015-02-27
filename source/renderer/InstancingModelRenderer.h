@@ -46,7 +46,10 @@ public:
 	void EndPass(int streamflags);
 	void PrepareModelDef(const CShaderProgramPtr& shader, int streamflags, const CModelDef& def);
 	void RenderModel(const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data);
+	void RenderModelInstanced(const CShaderProgramPtr& shader, int streamflags, CModel* model, size_t count);
 
+	bool IsInstanced() const { return true; }
+	
 protected:
 	InstancingModelRendererInternals* m;
 };

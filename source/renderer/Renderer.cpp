@@ -115,6 +115,8 @@ private:
 
 	enum {
 		Row_DrawCalls = 0,
+		Row_InstanceCalls,
+		Row_InstanceAvg,
 		Row_TerrainTris,
 		Row_WaterTris,
 		Row_ModelTris,
@@ -172,6 +174,18 @@ CStr CRendererStatsTable::GetCellText(size_t row, size_t col)
 		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_DrawCalls);
 		return buf;
 
+	case Row_InstanceCalls:
+		if (col == 0)
+			return "# instance calls";
+		sprintf_s(buf, sizeof(buf), "%lu", (unsigned long)Stats.m_InstancedCalls);
+		return buf;
+	
+	case Row_InstanceAvg:
+		if (col == 0)
+			return "# elem per instance";
+		sprintf_s(buf, sizeof(buf), "%f", (float)Stats.m_InstancedElements/Stats.m_InstancedCalls);
+		return buf;
+	
 	case Row_TerrainTris:
 		if (col == 0)
 			return "# terrain tris";

@@ -215,6 +215,11 @@ struct ShaderModelRendererInternals
 
 	/// List of submitted models for rendering in this frame
 	std::vector<CModel*> submissions[CRenderer::CULL_MAX];
+
+#define NUM_INSTANCING_ARRAYS 256
+	VertexArray instancingArray[NUM_INSTANCING_ARRAYS];
+	VertexArray::Attribute instancingTransform[NUM_INSTANCING_ARRAYS][4];
+	size_t currentInstancingArray;
 };
 
 
@@ -223,6 +228,21 @@ ShaderModelRenderer::ShaderModelRenderer(ModelVertexRendererPtr vertexrenderer)
 {
 	m = new ShaderModelRendererInternals(this);
 	m->vertexRenderer = vertexrenderer;
+
+	for (size_t j = 0; j < NUM_INSTANCING_ARRAYS; ++j)
+	{
+		for (size_t i = 0; i < 4; ++i)
+		{
+			m->instancingTransform[j][i].type = GL_FLOAT;
+			m->instancingTransform[j][i].elems = 4;
+			m->instancingArray[j].AddAttribute(&m->instancingTransform[j][i]);
+		}
+
+		m->instancingArray[j].SetNumVertices(64);
+		m->instancingArray[j].Layout();
+	}
+
+	m->currentInstancingArray = 0;
 }
 
 ShaderModelRenderer::~ShaderModelRenderer()
@@ -362,6 +382,16 @@ struct SMRCompareTechBucket
 		return a.tech < b.tech;
 	}
 };
+
+// This is much too simple but it avoids most visible artifacts.
+bool hasChanged(CModel* lastModel, CModel* newModel)
+{
+	if (lastModel->GetModelDef().get() != newModel->GetModelDef().get())
+		return true;
+	if (lastModel->GetMaterial().GetDiffuseTexture() != newModel->GetMaterial().GetDiffuseTexture())
+		return true;
+	return false;
+}
 
 void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShaderDefines& context, int cullGroup, int flags)
 {
@@ -655,15 +685,44 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 
 				for (size_t idx = idxTechStart; idx < idxTechEnd; ++idx)
 				{
+					int instances = 0;
+
+					std::vector<CMatrix3D> instancingTransforms;
+
 					CModel** models = techBuckets[idx].models;
 					size_t numModels = techBuckets[idx].numModels;
+
+					if (numModels == 0)
+						continue;
+
+					CModel* newModel = NULL;
+					
 					for (size_t i = 0; i < numModels; ++i)
 					{
 						CModel* model = models[i];
-
+						
 						if (flags && !(model->GetFlags() & flags))
 							continue;
-
+						
+						if (m->vertexRenderer->IsInstanced())
+						{
+							instances++;
+							CMatrix3D transform = model->GetTransform();
+							instancingTransforms.push_back(transform);
+						
+							if (i < numModels-1)
+							{
+								newModel = models[i+1];
+								while (i < numModels-1 && instances < 250 && !hasChanged(model, newModel)) {
+									model = models[++i];
+									instances++;
+									CMatrix3D transform = model->GetTransform();
+									instancingTransforms.push_back(transform);
+									newModel = models[i+1];
+								}
+							}
+						}
+						
 						const CMaterial::SamplersVector& samplers = model->GetMaterial().GetSamplers();
 						size_t samplersNum = samplers.size();
 						
@@ -730,7 +789,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						for (size_t q = 0; q < renderQueries.GetSize(); q++)
 						{
 							CShaderRenderQueries::RenderQuery rq = renderQueries.GetItem(q);
-							if (rq.first == RQUERY_TIME)
+							if (rq.first == RQUERY_TIME && i == 0)
 							{
 								CShaderProgram::Binding binding = shader->GetUniformBinding(rq.second);
 								if (binding.Active())
@@ -756,14 +815,24 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 								shader->BindTexture(str_skyCube, g_Renderer.GetSkyManager()->GetSkyCube());
 							}
 						}
-
+						
 						modifier->PrepareModel(shader, model);
-
+						
+						if (m->vertexRenderer->IsInstanced())
+						{
+							shader->Uniform(str_instancingTransforms, instancingTransforms.size(), &instancingTransforms[0]);
+							m->vertexRenderer->RenderModelInstanced(shader, streamflags, model, instances);
+							instances = 0;
+							instancingTransforms.clear();
+						}
+						else
+						{
 						CModelRData* rdata = static_cast<CModelRData*>(model->GetRenderData());
 						ENSURE(rdata->GetKey() == m->vertexRenderer.get());
-
+							
 						m->vertexRenderer->RenderModel(shader, streamflags, model, rdata);
 					}
+				}
 				}
 
 				m->vertexRenderer->EndPass(streamflags);

@@ -1,4 +1,5 @@
 #version 120
+#extension GL_ARB_draw_instanced : enable
 
 uniform mat4 transform;
 uniform vec3 cameraPos;
@@ -11,7 +12,7 @@ uniform vec3 sunColor;
 #endif
 uniform vec2 losTransform;
 uniform mat4 shadowTransform;
-uniform mat4 instancingTransform;
+uniform mat4 instancingTransforms[250];
 
 #if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
   uniform vec4 shadowScale;
@@ -74,6 +75,8 @@ vec4 fakeCos(vec4 x)
 
 void main()
 {
+  mat4 instancingTransform = instancingTransforms[gl_InstanceIDARB];//mat4(a_instancingTransform0, a_instancingTransform1, a_instancingTransform2, a_instancingTransform3);
+
   #if USE_GPU_SKINNING
     vec3 p = vec3(0.0);
     vec3 n = vec3(0.0);

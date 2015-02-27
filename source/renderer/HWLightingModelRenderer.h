@@ -47,6 +47,8 @@ public:
 	void PrepareModelDef(const CShaderProgramPtr& shader, int streamflags, const CModelDef& def);
 	void RenderModel(const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data);
 
+	bool IsInstanced() const { return false; };
+
 protected:
 	ShaderModelRendererInternals* m;
 };
