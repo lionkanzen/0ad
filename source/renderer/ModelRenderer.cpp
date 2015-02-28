@@ -47,9 +47,6 @@
 # include "lib/sysdep/arch/x86_x64/x86_x64.h"
 #endif
 
-
-#define MAXINSTANCE 6000
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 // ModelRenderer implementation
 
@@ -696,7 +693,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 							if (i < numModels-1)
 							{
 								newModel = models[i+1];
-								while (i < numModels-1 && instances < MAXINSTANCE && !hasChanged(model, newModel)) {
+								while (i < numModels-1 && instances < 250 && !hasChanged(model, newModel)) {
 									model = models[++i];
 									instances++;
 									CMatrix3D transform = model->GetTransform();
@@ -803,7 +800,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						
 						if (m->vertexRenderer->IsInstanced())
 						{
-							//shader->Uniform(str_instancingTransforms, instancingTransforms.size(), &instancingTransforms[0]);
+							shader->Uniform(str_instancingTransforms, instancingTransforms.size(), &instancingTransforms[0]);
 							m->vertexRenderer->RenderModelInstanced(shader, instancingTransforms, model, instances);
 							instances = 0;
 							instancingTransforms.clear();
