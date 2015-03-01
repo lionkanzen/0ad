@@ -296,14 +296,77 @@ struct SMRBatchModel
 		if (b->GetModelDef() < a->GetModelDef())
 			return false;
 
-		if (a->GetMaterial().GetDiffuseTexture() < b->GetMaterial().GetDiffuseTexture())
-			return true;
-		if (b->GetMaterial().GetDiffuseTexture() < a->GetMaterial().GetDiffuseTexture())
-			return false;
+		const CMaterial::SamplersVector& a_samplers = a->GetMaterial().GetSamplers();
+		const CMaterial::SamplersVector& b_samplers = b->GetMaterial().GetSamplers();
+		size_t aSize = a_samplers.size();
+		size_t bSize = b_samplers.size();
 
+		if (aSize < bSize)
+			return true;
+		else if (aSize > bSize)
+			return false;
+		
+		for (size_t s = 0; s < aSize && s < bSize; ++s)
+		{
+			if (a_samplers[s].Sampler < b_samplers[s].Sampler)
+				return true;
+			else if (a_samplers[s].Sampler < b_samplers[s].Sampler)
+				return false;
+		}
+		
+		const CShaderRenderQueries& aQueries = a->GetMaterial().GetRenderQueries();
+		const CShaderRenderQueries& bQueries = b->GetMaterial().GetRenderQueries();
+		
+		if (aQueries.GetSize() < bQueries.GetSize())
+			return true;
+		else if (aQueries.GetSize() > bQueries.GetSize())
+			return false;
+		
+		for (size_t s = 0; s < aQueries.GetSize() && s < bQueries.GetSize(); ++s)
+		{
+			if (aQueries.GetItem(s).first < bQueries.GetItem(s).first)
+				return true;
+			else if (aQueries.GetItem(s).first > bQueries.GetItem(s).first)
+				return false;
+		}
+		
 		return a->GetMaterial().GetStaticUniforms() < b->GetMaterial().GetStaticUniforms();
 	}
 };
+
+bool UsesSameShader(CModel* a, CModel* b)
+{
+	if (a->GetModelDef() != b->GetModelDef())
+		return false;
+	
+	const CMaterial::SamplersVector& a_samplers = a->GetMaterial().GetSamplers();
+	const CMaterial::SamplersVector& b_samplers = b->GetMaterial().GetSamplers();
+	size_t aSize = a_samplers.size();
+	size_t bSize = b_samplers.size();
+	
+	if (aSize != bSize)
+		return false;
+	
+	for (size_t s = 0; s < aSize; ++s)
+	{
+		if (a_samplers[s].Sampler != b_samplers[s].Sampler)
+			return false;
+	}
+	
+	const CShaderRenderQueries& aQueries = a->GetMaterial().GetRenderQueries();
+	const CShaderRenderQueries& bQueries = b->GetMaterial().GetRenderQueries();
+	
+	if (aQueries.GetSize() != bQueries.GetSize())
+		return false;
+	
+	for (size_t s = 0; s < aQueries.GetSize(); ++s)
+	{
+		if (aQueries.GetItem(s).first != bQueries.GetItem(s).first)
+			return false;
+	}
+	
+	return a->GetMaterial().GetStaticUniforms() == b->GetMaterial().GetStaticUniforms();
+}
 
 struct SMRCompareSortByDistItem
 {
@@ -350,6 +413,7 @@ struct SMRTechBucket
 	CShaderTechniquePtr tech;
 	CModel** models;
 	size_t numModels;
+	bool instanced;
 
 	// Model list is stored as pointers, not as a std::vector,
 	// so that sorting lists of this struct is fast
@@ -413,13 +477,14 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 	 * There are a smallish number of materials, and a smaller number of techniques.
 	 * 
 	 * To minimise technique lookups, we first group models by material,
-	 * in 'materialBuckets' (a hash table).
+	 * in 'materialBuckets' (a hash table using boost's unordered_map).
+	 * The second element is a vector of models using that material.
 	 * 
 	 * For each material bucket we then look up the appropriate shader technique.
 	 * If the technique requires sort-by-distance, the model is added to the
 	 * 'sortByDistItems' list with its computed distance.
-	 * Otherwise, the bucket's list of models is sorted by modeldef+texture+uniforms,
-	 * then the technique and model list is added to 'techBuckets'.
+	 * Otherwise, the materialBucket's vector of models is sorted by modeldef+texture+uniforms,
+	 * then the technique and model vector are added to 'techBuckets'.
 	 * 
 	 * 'techBuckets' is then sorted by technique, to improve batching when multiple
 	 * materials map onto the same technique.
@@ -511,6 +576,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		PROFILE3("processing material buckets");
 		for (MaterialBuckets_t::iterator it = materialBuckets.begin(); it != materialBuckets.end(); ++it)
 		{
+			//
 			CShaderTechniquePtr tech = g_Renderer.GetShaderManager().LoadEffect(it->first.effect, context, it->first.defines);
 
 			// Skip invalid techniques (e.g. from data file errors)
@@ -547,10 +613,50 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 				// for most cases (as related samplers are usually used together), it would be better
 				// to take all the samplers into account when sorting here.
 				std::sort(it->second.begin(), it->second.end(), SMRBatchModel());
-
-				// Add a tech bucket pointing at this model list
-				SMRTechBucket techBucket = { tech, &it->second[0], it->second.size() };
-				techBuckets.push_back(techBucket);
+				
+				
+				if (m->vertexRenderer->IsInstanced())
+				{
+					ModelList_t basicTechnique((ModelListAllocator(arena))), otherTechnique((ModelListAllocator(arena)));
+					
+					size_t instances = 1;
+					for (size_t i = 0; i < it->second.size()-1; )
+					{
+						CModel* model = it->second[i];
+						CModel* newModel = it->second[++i];
+						instances = 1;
+						while (i < it->second.size() && instances < 250 && UsesSameShader(model, newModel)) {
+							instances++;
+							newModel = it->second[++i];
+						}
+						if (instances > 3)
+							std::copy(it->second.begin()+i-instances, it->second.begin() + i, std::back_inserter(otherTechnique));
+						else
+							std::copy(it->second.begin()+i-instances, it->second.begin() + i, std::back_inserter(basicTechnique));
+					}
+					if (instances == 1)
+						basicTechnique.push_back(it->second.back());
+					
+					// Add a tech bucket pointing at this model list
+					if (!otherTechnique.empty())
+					{
+						CShaderDefines newDefine(context);
+						newDefine.Add(str_USE_REAL_INSTANCING, str_1);
+						
+						CShaderTechniquePtr otherTech = g_Renderer.GetShaderManager().LoadEffect(it->first.effect, newDefine, it->first.defines);
+						
+						SMRTechBucket techBucket = { otherTech, &otherTechnique[0], otherTechnique.size(), true };
+						techBuckets.push_back(techBucket);
+					}
+					if (!basicTechnique.empty())
+					{
+						SMRTechBucket techBucket = { tech, &basicTechnique[0], basicTechnique.size(), false };
+						techBuckets.push_back(techBucket);
+					}
+				} else {
+					SMRTechBucket techBucket = { tech, &it->second[0], it->second.size(), false };
+					techBuckets.push_back(techBucket);
+				}
 			}
 		}
 	}
@@ -593,7 +699,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 				if (techIdx != currentTechIdx)
 				{
 					// Start of a new run - push the old run into a new tech bucket
-					SMRTechBucket techBucket = { sortByDistTechs[currentTechIdx], &sortByDistModels[start], end-start };
+					SMRTechBucket techBucket = { sortByDistTechs[currentTechIdx], &sortByDistModels[start], end-start, false };
 					techBuckets.push_back(techBucket);
 					start = end;
 					currentTechIdx = techIdx;
@@ -601,7 +707,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 			}
 
 			// Add the tech bucket for the final run
-			SMRTechBucket techBucket = { sortByDistTechs[currentTechIdx], &sortByDistModels[start], sortByDistItems.size()-start };
+			SMRTechBucket techBucket = { sortByDistTechs[currentTechIdx], &sortByDistModels[start], sortByDistItems.size()-start, false };
 			techBuckets.push_back(techBucket);
 		}
 	}
@@ -684,16 +790,15 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						if (flags && !(model->GetFlags() & flags))
 							continue;
 						
-						if (m->vertexRenderer->IsInstanced())
+						if (techBuckets[idx].instanced)
 						{
 							instances++;
 							CMatrix3D transform = model->GetTransform();
 							instancingTransforms.push_back(transform);
-						
 							if (i < numModels-1)
 							{
 								newModel = models[i+1];
-								while (i < numModels-1 && instances < 250 && !hasChanged(model, newModel)) {
+								while (i < numModels-1 && instances < 250 && UsesSameShader(model, newModel)) {
 									model = models[++i];
 									instances++;
 									CMatrix3D transform = model->GetTransform();
@@ -798,7 +903,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						
 						modifier->PrepareModel(shader, model);
 						
-						if (m->vertexRenderer->IsInstanced())
+						if (techBuckets[idx].instanced)
 						{
 							shader->Uniform(str_instancingTransforms, instancingTransforms.size(), &instancingTransforms[0]);
 							m->vertexRenderer->RenderModelInstanced(shader, instancingTransforms, model, instances);
@@ -807,12 +912,12 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 						}
 						else
 						{
-						CModelRData* rdata = static_cast<CModelRData*>(model->GetRenderData());
-						ENSURE(rdata->GetKey() == m->vertexRenderer.get());
+							CModelRData* rdata = static_cast<CModelRData*>(model->GetRenderData());
+							ENSURE(rdata->GetKey() == m->vertexRenderer.get());
 							
-						m->vertexRenderer->RenderModel(shader, streamflags, model, rdata);
+							m->vertexRenderer->RenderModel(shader, streamflags, model, rdata);
+						}
 					}
-				}
 				}
 
 				m->vertexRenderer->EndPass(streamflags);

@@ -26,6 +26,7 @@ class CMaterialManager
 {
 public:
 	CMaterialManager();
+	// Returns a copy of the material 
 	CMaterial LoadMaterial(const VfsPath& pathname);
 
 private:

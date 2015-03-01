@@ -12,6 +12,8 @@ uniform vec3 sunColor;
 #endif
 uniform vec2 losTransform;
 uniform mat4 shadowTransform;
+
+uniform mat4 instancingTransform;
 uniform mat4 instancingTransforms[250];
 
 #if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
@@ -75,7 +77,16 @@ vec4 fakeCos(vec4 x)
 
 void main()
 {
-	mat4 instancingTransform = instancingTransforms[gl_InstanceIDARB];
+#if USE_REAL_INSTANCING
+	float totoro = 0.0f;
+#endif
+#if USE_REAL_INSTANCING
+	mat4 instancingTransformLocal = instancingTransforms[gl_InstanceIDARB];
+#else
+#if USE_INSTANCING
+	mat4 instancingTransformLocal = instancingTransform;
+#endif
+#endif
 	//mat4 instancingTransform = a_instancingTransform0;// mat4(a_instancingTransform0, a_instancingTransform1, a_instancingTransform2, a_instancingTransform3);
 
   #if USE_GPU_SKINNING
@@ -89,16 +100,16 @@ void main()
         n += vec3(m * vec4(a_normal, 0.0)) * a_skinWeights[i];
       }
     }
-    vec4 position = instancingTransform * vec4(p, 1.0);
-    mat3 normalMatrix = mat3(instancingTransform[0].xyz, instancingTransform[1].xyz, instancingTransform[2].xyz);
+    vec4 position = instancingTransformLocal * vec4(p, 1.0);
+    mat3 normalMatrix = mat3(instancingTransformLocal[0].xyz, instancingTransformLocal[1].xyz, instancingTransformLocal[2].xyz);
     vec3 normal = normalMatrix * normalize(n);
     #if (USE_NORMAL_MAP || USE_PARALLAX_MAP)
       vec3 tangent = normalMatrix * a_tangent.xyz;
     #endif
   #else
   #if (USE_INSTANCING)
-    vec4 position = instancingTransform * vec4(a_vertex, 1.0);
-    mat3 normalMatrix = mat3(instancingTransform[0].xyz, instancingTransform[1].xyz, instancingTransform[2].xyz);
+    vec4 position = instancingTransformLocal * vec4(a_vertex, 1.0);
+    mat3 normalMatrix = mat3(instancingTransformLocal[0].xyz, instancingTransformLocal[1].xyz, instancingTransformLocal[2].xyz);
     vec3 normal = normalMatrix * a_normal;
     #if (USE_NORMAL_MAP || USE_PARALLAX_MAP)
       vec3 tangent = normalMatrix * a_tangent.xyz;
@@ -114,7 +125,7 @@ void main()
     vec2 wind = windData.xy;
 
     // fractional part of model position, clamped to >.4
-    vec4 modelPos = instancingTransform[3];
+    vec4 modelPos = instancingTransformLocal[3];
     modelPos = fract(modelPos);
     modelPos = clamp(modelPos, 0.4, 1.0);
 
@@ -125,7 +136,7 @@ void main()
     // these determine the speed of the wind's "cosine" waves.
     cosVec.w = 0.0;
     cosVec.x = sim_time.x * modelPos[0] + position.x;
-    cosVec.y = sim_time.x * modelPos[2] / 3.0 + instancingTransform[3][0];
+    cosVec.y = sim_time.x * modelPos[2] / 3.0 + instancingTransformLocal[3][0];
     cosVec.z = sim_time.x * abswind / 4.0 + position.z;
 
     // calculate "cosines" in parallel, using a smoothed triangle wave

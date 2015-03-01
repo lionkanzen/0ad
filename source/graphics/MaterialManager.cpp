@@ -37,6 +37,7 @@ CMaterialManager::CMaterialManager()
 	qualityLevel = clamp(qualityLevel, 0.0f, 10.0f);
 }
 
+// Returns a copy of the material.
 CMaterial CMaterialManager::LoadMaterial(const VfsPath& pathname)
 {
 	if (pathname.empty())
