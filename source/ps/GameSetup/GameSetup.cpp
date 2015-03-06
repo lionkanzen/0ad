@@ -1002,7 +1002,7 @@ void InitGraphics(const CmdLineArgs& args, int flags)
 
 	RunHardwareDetection();
 
-	const int quality = SANE_TEX_QUALITY_DEFAULT;	// TODO: set value from config file
+	const int quality = 6;	// TODO: set value from config file
 	SetTextureQuality(quality);
 
 	ogl_WarnIfError();

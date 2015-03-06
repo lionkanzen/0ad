@@ -142,8 +142,12 @@ bool CObjectEntry::BuildVariation(const std::vector<std::set<CStr> >& selections
 	{
 		CTextureProperties textureProps(samp->m_SamplerFile);
 		textureProps.SetWrap(GL_CLAMP_TO_EDGE);
+		if (samp->m_SamplerName == CStr("normTex"))
+			textureProps.SetMaxAnisotropy(4.0f);
 		CTexturePtr texture = g_Renderer.GetTextureManager().CreateTexture(textureProps);
-		// if we've loaded this model we're probably going to render it soon, so prefetch its texture. 
+		
+
+		// if we've loaded this model we're probably going to render it soon, so prefetch its texture.
 		// All textures are prefetched even in the fixed pipeline, including the normal maps etc.
 		// TODO: Should check which renderpath is selected and only preload the necessary textures.
 		texture->Prefetch(); 

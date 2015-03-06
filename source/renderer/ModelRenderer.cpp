@@ -515,32 +515,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 		{
 			CModel* model = m->submissions[cullGroup][i];
 
-			uint32_t condFlags = 0;
-
-			const CShaderConditionalDefines& condefs = model->GetMaterial().GetConditionalDefines();
-			for (size_t j = 0; j < condefs.GetSize(); ++j)
-			{
-				const CShaderConditionalDefines::CondDefine& item = condefs.GetItem(j);
-				int type = item.m_CondType;
-				switch (type)
-				{
-					case DCOND_DISTANCE:
-					{
-						CVector3D modelpos = model->GetTransform().GetTranslation();
-						float dist = worldToCam.Transform(modelpos).Z;
-						
-						float dmin = item.m_CondArgs[0];
-						float dmax = item.m_CondArgs[1];
-						
-						if ((dmin < 0 || dist >= dmin) && (dmax < 0 || dist < dmax))
-							condFlags |= (1 << j);
-						
-						break;
-					}
-				}
-			}
-
-			CShaderDefines defs = model->GetMaterial().GetShaderDefines(condFlags);
+			CShaderDefines defs = model->GetMaterial().GetShaderDefines();
 			SMRMaterialBucketKey key(model->GetMaterial().GetShaderEffect(), defs);
 
 			MaterialBuckets_t::iterator it = materialBuckets.find(key);
@@ -552,9 +527,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 				inserted.first->second.push_back(model);
 			}
 			else
-			{
 				it->second.push_back(model);
-			}
 		}
 	}
 
