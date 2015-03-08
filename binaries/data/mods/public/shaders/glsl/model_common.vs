@@ -1,5 +1,7 @@
 #version 120
+#if USE_REAL_INSTANCING
 #extension GL_ARB_draw_instanced : enable
+#endif
 
 uniform mat4 transform;
 uniform vec3 cameraPos;
@@ -14,7 +16,9 @@ uniform vec2 losTransform;
 uniform mat4 shadowTransform;
 
 uniform mat4 instancingTransform;
+#if USE_REAL_INSTANCING
 uniform mat4 instancingTransforms[250];
+#endif
 
 #if USE_SHADOW_SAMPLER && USE_SHADOW_PCF
   uniform vec4 shadowScale;
@@ -26,6 +30,7 @@ uniform mat4 instancingTransforms[250];
 #endif
 
 varying vec4 v_lighting;
+varying vec4 v_lighting2;
 varying vec2 v_tex;
 varying vec2 v_los;
 
@@ -77,9 +82,6 @@ vec4 fakeCos(vec4 x)
 
 void main()
 {
-#if USE_REAL_INSTANCING
-	float totoro = 0.0f;
-#endif
 #if USE_REAL_INSTANCING
 	mat4 instancingTransformLocal = instancingTransforms[gl_InstanceIDARB];
 #else
@@ -179,10 +181,16 @@ void main()
       #endif
     #endif
   #endif
-  
-  v_lighting.xyz = max(0.0, dot(normal, -sunDir)) * sunColor;
-
-  v_tex = a_uv0;
+	
+	
+ float firstDot = dot(normal, -sunDir);
+  v_lighting2.xyz = max(0.0, (dot(normal, vec3(-sunDir.r,sunDir.g,-sunDir.b)) + 1.0) - abs(firstDot)*0.8 - max(0.0,firstDot)*1.9) * 0.4 * sunColor;
+	v_lighting2 -= a_vertex.y*0.1;
+	v_lighting2 = clamp(v_lighting2, vec4(0.0), vec4(0.5));
+	
+	v_lighting.xyz = max(0.0, firstDot) * sunColor;
+	v_lighting.xyz = max(0.0, dot(normal, -sunDir)) * sunColor;
+	v_tex = a_uv0;
 
   #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
     v_tex2 = a_uv1;

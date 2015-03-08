@@ -546,6 +546,9 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 	std::vector<SMRTechBucket, TechBucketsAllocator> techBuckets((TechBucketsAllocator(arena)));
 
 	{
+		CShaderDefines contexInstanced(context);
+		contexInstanced.Add(str_USE_REAL_INSTANCING, str_1);
+
 		PROFILE3("processing material buckets");
 		for (MaterialBuckets_t::iterator it = materialBuckets.begin(); it != materialBuckets.end(); ++it)
 		{
@@ -613,10 +616,7 @@ void ShaderModelRenderer::Render(const RenderModifierPtr& modifier, const CShade
 					// Add a tech bucket pointing at this model list
 					if (!otherTechnique.empty())
 					{
-						CShaderDefines newDefine(context);
-						newDefine.Add(str_USE_REAL_INSTANCING, str_1);
-						
-						CShaderTechniquePtr otherTech = g_Renderer.GetShaderManager().LoadEffect(it->first.effect, newDefine, it->first.defines);
+						CShaderTechniquePtr otherTech = g_Renderer.GetShaderManager().LoadEffect(it->first.effect, contexInstanced, it->first.defines);
 						
 						SMRTechBucket techBucket = { otherTech, &otherTechnique[0], otherTechnique.size(), true };
 						techBuckets.push_back(techBucket);

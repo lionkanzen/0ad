@@ -478,7 +478,9 @@ CRenderer::CRenderer()
 #endif
 
 	m_ShadowZBias = 0.02f;
+
 	m_ShadowMapSize = 0;
+	CFG_GET_VAL("shadowMapSize", m_ShadowMapSize);
 
 	m_LightEnv = NULL;
 

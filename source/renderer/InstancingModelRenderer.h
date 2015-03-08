@@ -48,7 +48,7 @@ public:
 	void RenderModel(const CShaderProgramPtr& shader, int streamflags, CModel* model, CModelRData* data);
 	void RenderModelInstanced(const CShaderProgramPtr& shader, const std::vector<CMatrix3D>& instanceTransforms, CModel* model, size_t count);
 
-	bool IsInstanced() const { return true; }
+	bool IsInstanced() const;
 	
 protected:
 	InstancingModelRendererInternals* m;

@@ -35,6 +35,7 @@ uniform vec3 fogColor;
 uniform vec2 fogParams;
 
 varying vec4 v_lighting;
+varying vec4 v_lighting2;
 varying vec2 v_tex;
 varying vec2 v_los;
 
@@ -188,7 +189,7 @@ void main()
     vec3 ntex = texture2D(normTex, coord).rgb * 2.0 - 1.0;
     ntex.y = -ntex.y;
     normal = normalize(tbn * ntex);
-    vec3 bumplight = max(dot(-sunDir, normal), 0.0) * sunColor;
+	vec3 bumplight = max(dot(-sunDir, normal), -0.05) * sunColor;
     vec3 sundiffuse = (bumplight - v_lighting.rgb) * effectSettings.x + v_lighting.rgb;
   #else
     vec3 sundiffuse = v_lighting.rgb;
@@ -210,16 +211,18 @@ void main()
     specular.rgb = sunColor * specCol * pow(max(0.0, dot(normalize(normal), v_half)), specPow);
   #endif
 
-  vec3 color = (texdiffuse * sundiffuse + specular.rgb) * get_shadow();
-  vec3 ambColor = texdiffuse * ambient;
-
+  float shadow = get_shadow();
+  vec3 color = (texdiffuse * sundiffuse + specular.rgb) * shadow;
+	  vec3 ambColor = texdiffuse * (ambient + v_lighting2.rgb*(shadow+0.4)*0.5);
+	//vec3 ambColor = texdiffuse * ambient;
+	
   #if (USE_INSTANCING || USE_GPU_SKINNING) && USE_AO
-    vec3 ao = texture2D(aoTex, v_tex2).rrr;
+	vec3 ao = texture2D(aoTex, v_tex2).rrr;
     ao = mix(vec3(1.0), ao * 2.0, effectSettings.w);
     ambColor *= ao;
   #endif
-
-  color += ambColor;
+	
+	color += ambColor + min(vec3(0.0), sundiffuse);
 
   #if USE_SPECULAR_MAP && USE_SELF_LIGHT
     color = mix(texdiffuse, color, specular.a);

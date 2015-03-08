@@ -264,7 +264,7 @@ IModelDef::IModelDef(const CModelDefPtr& mdef, bool gpuSkinning, bool calculateT
 struct InstancingModelRendererInternals
 {
 	bool gpuSkinning;
-	
+	bool canUseRealInstance;
 	bool calculateTangents;
 
 	/// Previously prepared modeldef
@@ -282,11 +282,17 @@ InstancingModelRenderer::InstancingModelRenderer(bool gpuSkinning, bool calculat
 	m->gpuSkinning = gpuSkinning;
 	m->calculateTangents = calculateTangents;
 	m->imodeldef = 0;
+	m->canUseRealInstance = ogl_HaveExtension("GL_ARB_draw_instanced");
 }
 
 InstancingModelRenderer::~InstancingModelRenderer()
 {
 	delete m;
+}
+
+bool InstancingModelRenderer::IsInstanced() const
+{
+	return m->canUseRealInstance;
 }
 
 
